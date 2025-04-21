@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Document</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0d1117;
+            color: #c9d1d9;
+            margin: 0;
+            padding: 20px;
+            display: flex; /* Use flexbox for the overall layout */
+        }
+
+        /* Left Navigation Sidebar */
+        .sidebar {
+            background-color: #161b22;
+            color: #c9d1d9;
+            width: 200px; /* Adjust width as needed */
+            padding: 20px;
+            border-radius: 10px;
+            margin-right: 20px; /* Space between sidebar and main content */
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; /* Align items to the left */
+        }
+
+        .sidebar-logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .sidebar-logo img {
+            width: 30px; /* Adjust logo size */
+            height: 30px;
+            margin-right: 10px;
+            border-radius: 5px; /* If the logo has rounded corners */
+        }
+
+        .sidebar-logo h2 {
+            margin: 0;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #58a6ff;
+        }
+
+        .main-navigation {
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .main-navigation h4 {
+            color: #a1b8d1;
+            font-size: 0.8em;
+            font-weight: normal;
+            margin-top: 0;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            color: #c9d1d9;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            width: 100%;
+            box-sizing: border-box;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        .sidebar-link:hover {
+            background-color: #21262d;
+            color: #58a6ff;
+        }
+
+        .sidebar-link i {
+            margin-right: 10px;
+            font-size: 1.1em;
+        }
+
+        .account-section {
+            margin-top: auto; /* Push account links to the bottom */
+            width: 100%;
+            padding-top: 20px;
+            border-top: 1px solid #30363d;
+        }
+
+        .account-section h4 {
+            color: #a1b8d1;
+            font-size: 0.8em;
+            font-weight: normal;
+            margin-top: 0;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        /* Main content area (Upload form) */
+        .upload-area-wrapper {
+            flex-grow: 1; /* Take up remaining horizontal space */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-right: 20px; /* Add some right padding */
+        }
+
+        .upload-container {
+            background-color: #161b22;
+            border-radius: 10px;
+            padding: 30px;
+            width: 90%;
+            max-width: 700px;
+            margin-bottom: 30px;
+        }
+
+        /* (Rest of the CSS for the upload form elements remains the same) */
+        h2 { color: #58a6ff; margin-top: 0; margin-bottom: 10px; font-weight: bold; }
+        p { color: #a1b8d1; margin-bottom: 20px; font-size: 0.95em; }
+        .document-upload { background-color: #1e2733; border: 2px dashed #444c56; border-radius: 8px; padding: 40px; text-align: center; cursor: pointer; margin-bottom: 25px; }
+        .upload-icon { font-size: 3em; margin-bottom: 15px; color: #58a6ff; }
+        .document-upload p { color: #c9d1d9; margin-bottom: 5px; font-size: 1em; }
+        .document-upload p:last-child { font-size: 0.85em; color: #a1b8d1; }
+        input[type="file"] { display: none; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; color: #a1b8d1; font-weight: bold; font-size: 1em; }
+        .form-group select, .form-group input[type="text"], .form-group textarea { width: 100%; padding: 14px; border: 1px solid #30363d; border-radius: 6px; background-color: #21262d; color: #c9d1d9; box-sizing: border-box; font-size: 1em; }
+        .form-group select option { background-color: #21262d; color: #c9d1d9; }
+        button { background-color: #58a6ff; color: #fff; padding: 14px 28px; border: none; border-radius: 8px; cursor: pointer; font-size: 1.1em; transition: background-color 0.2s ease-in-out; }
+        button:hover { background-color: #3d8bf1; }
+        .upload-guidelines { background-color: #161b22; border: 1px solid #30363d; border-radius: 10px; padding: 20px; margin-bottom: 20px; width: 90%; max-width: 700px; }
+        .upload-guidelines h3 { color: #a1b8d1; margin-top: 0; margin-bottom: 15px; font-size: 1.2em; font-weight: bold; }
+        .guidelines-list { padding-left: 0; list-style-type: none; }
+        .guidelines-list li { color: #c9d1d9; margin-bottom: 10px; display: flex; align-items: center; font-size: 0.95em; }
+        .guidelines-list li i { margin-right: 10px; color: #85c8f4; font-size: 1.1em; }
+        .need-help { background-color: #161b22; border: 1px solid #30363d; border-radius: 10px; padding: 20px; width: 90%; max-width: 700px; font-size: 0.95em; color: #a1b8d1; }
+        .need-help h3 { color: #a1b8d1; margin-top: 0; margin-bottom: 15px; font-size: 1.2em; font-weight: bold; }
+        .need-help p { line-height: 1.6; margin-bottom: 15px; }
+        .need-help a { color: #58a6ff; text-decoration: none; font-weight: bold; }
+        .need-help a:hover { text-decoration: underline; }
+
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-logo">
+            <img src="your-logo.png" alt="Logo">
+            <h2>E-Library</h2>
+        </div>
+        <div class="main-navigation">
+            <h4>Main Navigation</h4>
+            <a href="#" class="sidebar-link"><i class="fas fa-home"></i> Overview</a>
+            <a href="#" class="sidebar-link active"><i class="fas fa-upload"></i> Upload</a>
+            <a href="#" class="sidebar-link"><i class="fas fa-book"></i> Library</a>
+            <a href="#" class="sidebar-link"><i class="fas fa-comment-dots"></i> Feedback</a>
+        </div>
+        <div class="account-section">
+            <h4>Account</h4>
+            <a href="#" class="sidebar-link"><i class="fas fa-user"></i> Profile</a>
+            <a href="#" class="sidebar-link"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </div>
+    </div>
+
+    <div class="upload-area-wrapper">
+        <div class="upload-container">
+            <h2>Upload Document</h2>
+            <p>Share your academic resources with the community.</p>
+
+            <div class="document-upload" onclick="document.getElementById('fileInput').click();">
+                <i class="fas fa-upload upload-icon"></i>
+                <p>Drop your file here or click to browse</p>
+                <p>PDF, DOC, DOCX up to 10MB</p>
+            </div>
+            <input type="file" id="fileInput" accept=".pdf,.doc,.docx">
+
+            <div class="form-group">
+                <label for="level">Level *</label>
+                <select id="level">
+                    <option value="100">100</option>
+                    <option value="200" selected>200</option>
+                    <option value="300">300</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="courseCode">Course Code *</label>
+                <input type="text" id="courseCode" placeholder="e.g., CSC 249.2">
+            </div>
+
+            <div class="form-group">
+                <label for="courseTitle">Course Title *</label>
+                <input type="text" id="courseTitle" placeholder="e.g., Intro to Computer Science">
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea id="description" rows="4" placeholder="Add a brief description of the document..."></textarea>
+            </div>
+
+            <button type="submit">Upload</button>
+        </div>
+
+        <div class="upload-guidelines">
+            <h3>Upload Guidelines</h3>
+            <ul class="guidelines-list">
+                <li><i class="fas fa-check-circle"></i> Accepted formats: PDF, DOC, DOCX</li>
+                <li><i class="fas fa-check-circle"></i> Maximum file size: 10MB</li>
+                <li><i class="fas fa-check-circle"></i> Include clear title and description for better searchability</li>
+            </ul>
+        </div>
+
+        <div class="need-help">
+            <h3>Need Help?</h3>
+            <p>If you're having trouble uploading documents or have questions, please visit our <a href="#">feedback page</a> or <a href="#">contact support</a>.</p>
+        </div>
+    </div>
+
+    <script>
+        document.querySelector('.document-upload').addEventListener('click', function() {
+            document.getElementById('fileInput').click();
+        });
+
+        document.getElementById('fileInput').addEventListener('change', function() {
+            if (this.files && this.files[0]) {
+                console.log('Selected file:', this.files[0].name);
+                // You could add code here to display the selected file name visually
+            }
+        });
+
+        // Basic logic to highlight the active link (you might need more sophisticated routing)
+        const sidebarLinks = document.querySelectorAll('.sidebar-link');
+        sidebarLinks.forEach(link => {
+            if (link.textContent.trim() === 'Upload') {
+                link.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>

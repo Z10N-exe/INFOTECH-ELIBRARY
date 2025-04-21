@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Library Archive</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .file-upload-container {
+            border: 2px dashed #cbd5e0;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+        }
+        .file-upload-container:hover {
+            border-color: #90caf9;
+        }
+        .file-upload-input {
+            display: none;
+        }
+        .file-upload-icon {
+            width: 3rem;
+            height: 3rem;
+            margin-bottom: 1rem;
+            color: #6b7280;
+        }
+        .file-upload-text {
+            font-size: 1rem;
+            color: #4b5563;
+        }
+        .upload-button {
+            margin-top: 1.5rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <header class="bg-blue-500 text-white py-4 text-center rounded-b-md shadow-md">
+        <h1 class="text-2xl font-semibold">Welcome to the E-Library/Archive the Deppartment of informatioon technology uniport </h1>
+        <p class="text-lg">Upload and download resources </p>
+    </header>
+
+    <main class="container mx-auto mt-8 p-4">
+        <section id="login-section" class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-xl font-semibold text-gray-800 mb-6 text-center">Login</h2>
+            <div class="mb-4">
+                <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email:</label>
+                <input type="email" id="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter your @uniport.edu.ng email">
+                <p id="email-error" class="text-red-500 text-xs italic mt-2" style="display: none;"></p>
+            </div>
+            <button id="login-button" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full">
+                Login with Your School Email
+            </button>
+            <p id="login-error" class="text-red-500 text-xs italic mt-4 text-center" style="display: none;"></p>
+        </section>
+
+        <div id="main-content" style="display: none;">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <section class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-6 text-center">Upload Document</h2>
+                    <form id="uploadForm" class="space-y-4">
+                        <div class="file-upload-container" id="file-upload-area">
+                            <input type="file" id="file-upload-input" name="file" class="file-upload-input" required>
+                            <svg class="file-upload-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0l-3 3m3-3l3 3M6 10.5a.75.75 0 01.75-.75h6a.75.75 0 01.75.75v8.25a.75.75 0 01-.75.75h-6a.75.75 0 01-.75-.75v-8.25z" />
+                            </svg>
+                            <p class="file-upload-text">Click to select a file to upload</p>
+                            <p id="file-error" class="text-red-500 text-xs italic mt-2" style="display: none;"></p>
+                        </div>
+                        <button type="submit" class="upload-button bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full">Upload File</button>
+                    </form>
+                    <div id="upload-response" class="mt-6 p-4 bg-green-100 text-green-800 rounded border border-green-300" style="display: none;">
+                        <p id="upload-message"></p>
+                        <p id="fileUrl" class="font-medium truncate"></p>
+                    </div>
+                    <div id="upload-error-response" class="mt-6 p-4 bg-red-100 text-red-800 rounded border border-red-300" style="display: none;">
+                        <p id="upload-error-message"></p>
+                    </div>
+                </section>
+
+                <section class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-6 text-center">Download Documents</h2>
+                    <ul id="file-list" class="space-y-3">
+                        </ul>
+                    <div id="download-error-response" class="mt-6 p-4 bg-red-100 text-red-800 rounded border border-red-300" style="display: none;">
+                        <p id="download-error-message"></p>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-4 text-center mt-8 rounded-t-md shadow-md">
+        <p>© 2024 E-Library Archive. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const loginButton = document.getElementById('login-button');
+        const loginError = document.getElementById('login-error');
+        const mainContent = document.getElementById('main-content');
+        const loginSection = document.getElementById('login-section');
+        const emailInput = document.getElementById('email'); // Get the email input
+
+        const uploadForm = document.getElementById('uploadForm');
+        const fileInput = document.getElementById('file-upload-input');
+        const responseDiv = document.getElementById('upload-response');
+        const messageText = document.getElementById('upload-message');
+        const fileUrlText = document.getElementById('fileUrl');
+        const errorResponseDiv = document.getElementById('upload-error-response');
+        const errorMessageText = document.getElementById('upload-error-message');
+        const fileList = document.getElementById('file-list');
+        const fileUploadArea = document.getElementById('file-upload-area');
+        const fileError = document.getElementById('file-error');
+
+
+        // Simulate a list of files on the server (replace with actual server data)
+        const files = [
+            { name: 'Document1.pdf', url: 'http://localhost:3000/uploads/document1.pdf' },
+            { name: 'Presentation.pptx', url: 'http://localhost:3000/uploads/presentation.pptx' },
+            { name: 'Image.jpg', url: 'http://localhost:3000/uploads/image.jpg' },
+        ];
+
+        // Function to display the list of files
+        function displayFileList() {
+            fileList.innerHTML = '';
+            files.forEach(file => {
+                const listItem = document.createElement('li');
+                listItem.classList.add('bg-white', 'rounded-md', 'shadow-sm', 'py-2', 'px-3', 'flex', 'justify-between', 'items-center');
+                listItem.innerHTML = `
+                    <span class="text-gray-700">${file.name}</span>
+                    <a href="${file.url}" download="${file.name}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-sm">Download</a>
+                `;
+                fileList.appendChild(listItem);
+            });
+        }
+
+        // Initial display of the file list
+        displayFileList();
+
+        // Function to simulate a successful login with a .uniport.edu.ng email
+        function simulateLogin() {
+            
+            const email = emailInput.value; // Get the email from the input
+            if (email && email.endsWith('@uniport.edu.ng')) {
+                // Simulate successful login
+                loginSection.style.display = 'none';
+                mainContent.style.display = 'block';
+                alert('Login successful!'); // Replace with a better UI notification
+            } else {
+                loginError.textContent = 'Invalid email address. Please use a @uniport.edu.ng email.';
+                loginError.style.display = 'block';
+            }
+        }
+
+        // Event listener for the login button
+        loginButton.addEventListener('click', simulateLogin);
+
+
+        // Handle file upload form submission
+        uploadForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const file = fileInput.files[0];
+            if (!file) {
+                fileError.textContent = "Please select a file to upload.";
+                fileError.style.display = "block";
+                return;
+            }
+            if (file.size > 5 * 1024 * 1024) {
+                fileError.textContent = "File size exceeds 5MB limit.";
+                fileError.style.display = "block";
+                return;
+            }
+            fileError.style.display = "none";
+
+            const formData = new FormData();
+            formData.append('file', file);
+
+            // Replace 'http://localhost:3000/upload' with your actual server URL
+            fetch('http://localhost:3000/upload', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Authorization': `Bearer ${getAuthToken()}`
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(err => {
+                        throw new Error(err.message || 'File upload failed');
+                    });
+                }
+                return response.json();
+            })
+            .then(data => {
+                responseDiv.style.display = 'block';
+                errorResponseDiv.style.display = 'none';
+                messageText.textContent = data.message;
+                fileUrlText.textContent = 'File URL: ' + data.fileUrl;
+                fileUrlText.href = data.fileUrl;
+                form.reset();
+                displayFileList();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                errorResponseDiv.style.display = 'block';
+                responseDiv.style.display = 'none';
+                errorMessageText.textContent = error.message;
+            });
+        });
+
+        // Add click event to the file upload area to open the file dialog
+        fileUploadArea.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        // Function to get the Auth0 token (replace with your actual authentication logic)
+        function getAuthToken() {
+            // This is a placeholder.
+            return "";
+        }
+    </script>
+</body>
+</html>
