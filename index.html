@@ -3,278 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Library Archive</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <title>IT Archive Login</title>
     <style>
+        /* General Reset */
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #1e293b; /* Dark blue background */
-            color: #f3f4f6; /* Light gray text */
-            display: flex;
-            min-height: 100vh;
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            background-color: #001f4d; /* Dark Blue Background */
+            color: #add8e6; /* Light Blue Font */
         }
 
-        aside {
-            width: 250px; /* Adjust as needed */
-            background-color: #334155; /* Darker blue sidebar */
-            border-right: 1px solid #4b5563;
-            padding: 2rem;
+        /* Container */
+        .container {
+            width: 100%;
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            background: #001a40; /* Slightly darker blue for container */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            margin-top: 100px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            color: #add8e6; /* Light Blue Font */
+        }
+
+        /* Logo Styles */
+        .logo {
+            margin-bottom: 20px;
+        }
+
+        .logo img {
+            max-width: 120px;
+            border-radius: 50%;
+        }
+
+        /* Form Styles */
+        form {
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
         }
 
-        aside .site-logo h1,
-        aside .site-logo p {
-            color: #e2e8f0;
+        label {
+            color: #add8e6; /* Light Blue Font */
+            font-weight: bold;
+            margin-bottom: 5px;
         }
 
-        aside .main-navigation h2,
-        aside .account-navigation h2 {
-            color: #9ca3af;
+        input[type="email"],
+        input[type="password"] { /* Added style for password input if you include it */
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
         }
 
-        aside .main-navigation ul,
-        aside .account-navigation ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+        .error {
+            color: red;
+            font-size: 0.85em;
+            margin-bottom: 10px;
         }
 
-        aside .main-navigation li a,
-        aside .account-navigation li a {
-            display: flex;
-            align-items: center;
-            padding: 0.75rem 1rem;
-            text-decoration: none;
-            color: #d1d5db;
-            border-radius: 0.375rem;
-            transition: background-color 0.2s ease-in-out;
+        /* Submit Button */
+        button[type="submit"] {
+            background-color: #004080; /* Dark Blue */
+            color: #add8e6; /* Light Blue Font */
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
         }
 
-        aside .main-navigation li a:hover,
-        aside .account-navigation li a:hover {
-            background-color: #4b5563;
+        button[type="submit"]:hover {
+            background-color: #003366; /* Even darker blue for hover */
         }
 
-        aside .main-navigation li a svg,
-        aside .account-navigation li a svg {
-            margin-right: 0.75rem;
-            width: 1.25rem;
-            height: 1.25rem;
-            fill: currentColor;
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #add8e6; /* Light Blue Font */
         }
-
-        aside .main-navigation li.active a {
-            background-color: #4299e1; /* Blue active color */
-            color: #f0f8ff;
-            font-weight: 600;
-        }
-
-        aside .account-navigation {
-            margin-top: 2rem;
-        }
-
-        aside .account-navigation .account-title {
-            font-size: 0.875rem;
-            color: #9ca3af;
-            margin-bottom: 0.5rem;
-            padding-left: 1rem;
-        }
-
-        main {
-            flex-grow: 1;
-            padding: 2rem;
-            background-color: #1a202c; /* Very dark blue main background */
-        }
-
-        main header h1,
-        main header p {
-            color: #e2e8f0;
-        }
-
-        .dashboard-overview {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .overview-card {
-            background-color: #334155; /* Darker blue cards */
-            border-radius: 0.375rem;
-            padding: 1.5rem;
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .overview-card .card-title {
-            font-size: 0.875rem;
-            color: #9ca3af;
-        }
-
-        .overview-card .card-value {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #e2e8f0;
-        }
-
-        .overview-card svg {
-            width: 1.5rem;
-            height: 1.5rem;
-            fill: #64b5f6; /* Light blue icon */
-        }
-
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 1.5rem;
-        }
-
-        .dashboard-section {
-            background-color: #334155; /* Darker blue sections */
-            border-radius: 0.375rem;
-            padding: 1.5rem;
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-        }
-
-        .dashboard-section h2 {
-            font-size: 1.25rem;
-            font-weight: 500;
-            margin-bottom: 1rem;
-            color: #e2e8f0;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .dashboard-section h2 svg {
-            width: 1rem;
-            height: 1rem;
-            fill: #9ca3af;
-        }
-
-        .quick-actions ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .quick-actions li a {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.75rem 0;
-            text-decoration: none;
-            color: #d1d5db;
-            border-bottom: 1px solid #4b5563;
-        }
-
-        .quick-actions li a:last-child {
-            border-bottom: none;
-        }
-
-        .quick-actions li a svg {
-            width: 1rem;
-            height: 1rem;
-            fill: #9ca3af;
-        }
-
-        .pending-uploads-list {
-            color: #9ca3af;
-            font-style: italic;
-        }
-
-        /* You can add more specific styling as needed */
     </style>
+    <script>
+        function validateEmail(event) {
+            const emailInput = document.getElementById('email');
+            const errorMessage = document.getElementById('error-message');
+
+            if (!emailInput.value.endsWith('@uniport.edu.ng')) {
+                event.preventDefault(); // Prevent form submission
+                errorMessage.textContent = 'Please use a valid @uniport.edu.ng email address.';
+            } else {
+                errorMessage.textContent = ''; // Clear any previous errors
+            }
+        }
+    </script>
 </head>
 <body>
-    <aside>
-        <div class="site-logo">
-            <div class="flex items-center">
-                <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white mr-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
-                        <path fill-rule="evenodd" d="M12 2.25c-5.384 0-9.75 4.366-9.75 9.75s4.366 9.75 9.75 9.75 9.75-4.366 9.75-9.75S17.384 2.25 12 2.25zm-2.625 6c-.54 0-.825.41-.825.925v5.15c0 .515.285.925.825.925h5.25c.54 0 .825-.41.825-.925v-5.15c0-.515-.285-.925-.825-.925h-5.25zM10.5 9a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z" clip-rule="evenodd" />
-                    </svg>
-                </div>
-                <div>
-                    <h1 class="text-lg font-semibold text-white">Faculty E-Library</h1>
-                    <p class="text-sm text-gray-400">Faculty of Computing</p>
-                </div>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <img src="Info_Tech_Logo_053325.png" alt="Logo">
             </div>
+            <h1>Information Technology Archive</h1>
+            <p>Log in using your university email</p>
         </div>
-        <div class="main-navigation">
-            <h2 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Main Navigation</h2>
-            <ul>
-                <li class="active"><a href="#">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
-                        <path d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2z" />
-                        <path d="M12 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                    Overview
-                </a></li>
-                <li><a href="UPLOAD.HTML">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0l-3 3m3-3l3 3M6 10.5a.75.75 0 01.75-.75h6a.75.75 0 01.75.75v8.25a.75.75 0 01-.75.75h-6a.75.75 0 01-.75-.75v-8.25z" />
-                    </svg>
-                    Upload
-                </a></li>
-                <li><a href="/library">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 14.25v-8.5a2.25 2.25 0 012.25-2.25h13.5a2.25 2.25 0 012.25 2.25v8.5m-15 0H21m-18 0h.75c.558 0 1.07.21 1.444.584l1.281 1.281c1.597 1.597 4.19 1.597 5.787 0l1.281-1.281c.374-.374.886-.584 1.444-.584H21" />
-                    </svg>
-                    Library
-                </a></li>
-                <li><a href="/feedback">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 20.25c-4.97 0-9-3.694-9-8.25s4.03-8.25 9-8.25 9 3.694 9 8.25-4.03 8.25-9 8.25z" />
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 13.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                    Feedback
-                </a></li>
-            </ul>
+        <form action="god.html" method="post" onsubmit="validateEmail(event)">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="Enter your @uniport.edu.ng email" required>
+            <div id="error-message" class="error"></div>
+            <button type="submit" style="background-color: #004080; color: #add8e6; padding: 10px 15px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer;">
+                Log in
+            </button>
+        </form>
+        <div class="footer">
+            <p>© 2025 Information technology Archive. All rights reserved.</p>
         </div>
-        <div class="account-navigation">
-            <h2 class="account-title">Account</h2>
-            <ul>
-                <li><a href="/profile">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.125h15.002M4.501 20.125a3 3 0 01-3-3V15a3 3 0 013-3h15.002a3 3 0 013 3v2.125a3 3 0 01-3 3M12 10.5h.008v.008H12V10.5z" />
-                    </svg>
-                    Profile
-                </a></li>
-                <li><a href="/logout">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25V9m6 6l-3-3m3 3l3-3m-3 3v-3.75m9 7.5h-9m9 2.25h-9m9 2.25h-3" />
-                    </svg>
-                    Logout
-                </a></li>
-            </ul>
-        </div>
-    </aside>
-    <main>
-        <header class="mb-4">
-            <h1 class="text-xl font-semibold text-white" id="greeting">Good day!</h1>
-            <p class="text-gray-400">Here's an overview of your library activity</p>
-        </header>
-        <section class="dashboard-overview">
-            <div class="overview-card">
-                <h2 class="card-title">Total Materials</h2>
-                <div class="card-value" id="total-materials">11</div>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
-                    <path d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2z" />
-                    <path d="M12 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-            </div>
-            <div class="overview-card">
-                <h2 class="card-title">Total Downloads</h2>
-                <div class="card-value" id="total-downloads">0</div>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5
+    </div>
+</body>
+</html>
