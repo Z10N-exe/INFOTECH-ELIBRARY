@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logout</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0d1117;
+            color: #c9d1d9;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .logout-container {
+            background-color: #161b22;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            width: 90%;
+            max-width: 600px;
+        }
+
+        h2 {
+            color: #58a6ff;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #a1b8d1;
+            margin-bottom: 25px;
+            font-size: 1.1em;
+        }
+
+        .logout-button {
+            background-color: #58a6ff;
+            color: #fff;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.2s ease-in-out;
+            margin-top: 10px;
+        }
+
+        .logout-button:hover {
+            background-color: #3d8bf1;
+        }
+
+        .logout-button:active {
+            background-color: #2563eb;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="logout-container">
+        <h2>Logging Out</h2>
+        <p>You are now being logged out of your account.  This window will close automatically.</p>
+        <button class = "logout-button" onclick="logout()">Close Window</button>
+
+    </div>
+
+    <script>
+        function logout() {
+            //  Simulate closing the window.
+            window.close();
+        }
+        // Attempt to close the window automatically after a short delay
+        setTimeout(function() {
+            window.close();
+        }, 2000); // 2-second delay
+    </script>
+</body>
+</html>
