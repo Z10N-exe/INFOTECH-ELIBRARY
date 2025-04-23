@@ -7,16 +7,16 @@ const cloudinary = require('cloudinary').v2;
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
 
 const app = express();
-const port = 3000;
+const port = 5000;
 
 app.use(cors());
 app.use(express.json());
 
 // Configure Cloudinary with .env variables
 cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET
+  cloud_name: process.env.dsjgsdgox,
+  api_key: process.env.876358767613788,
+  api_secret: process.env.ESRgHQWFvq5WMdP_aH97pYEByY4
 });
 
 // Set up Cloudinary Storage with multer
