@@ -1,135 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IT Archive Login</title>
-    <style>
-        /* General Reset */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #001f4d; /* Dark Blue Background */
-            color: #add8e6; /* Light Blue Font */
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IT Archive Login</title>
+  <style>
+    /* General Reset */
+    * {
+      box-sizing: border-box;
+    }
 
-        /* Container */
-        .container {
-            width: 100%;
-            max-width: 400px;
-            margin: auto;
-            padding: 20px;
-            background: #001a40; /* Slightly darker blue for container */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            border-radius: 8px;
-            margin-top: 100px;
-        }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #001f4d;
+      color: #add8e6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
 
-        /* Header */
-        .header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
+    .container {
+      width: 90%;
+      max-width: 400px;
+      background: #001a40;
+      padding: 30px 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
 
-        .header h1 {
-            color: #add8e6; /* Light Blue Font */
-        }
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
 
-        /* Logo Styles */
-        .logo {
-            margin-bottom: 20px;
-        }
+    .logo img {
+      max-width: 100px;
+      border-radius: 50%;
+      margin-bottom: 15px;
+    }
 
-        .logo img {
-            max-width: 120px;
-            border-radius: 50%;
-        }
+    h1 {
+      font-size: 1.4rem;
+      margin: 0 0 5px;
+    }
 
-        /* Form Styles */
-        form {
-            display: flex;
-            flex-direction: column;
-        }
+    p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: #cce6ff;
+    }
 
-        label {
-            color: #add8e6; /* Light Blue Font */
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
+    form {
+      margin-top: 25px;
+      display: flex;
+      flex-direction: column;
+    }
 
-        input[type="email"],
-        input[type="password"] { /* Added style for password input if you include it */
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            width: 100%;
-        }
+    label {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
 
-        .error {
-            color: red;
-            font-size: 0.85em;
-            margin-bottom: 10px;
-        }
+    input[type="email"] {
+      padding: 12px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      margin-bottom: 12px;
+      font-size: 1rem;
+    }
 
-        /* Submit Button */
-        button[type="submit"] {
-            background-color: #004080; /* Dark Blue */
-            color: #add8e6; /* Light Blue Font */
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
-            font-weight: bold;
-            cursor: pointer;
-        }
+    .error {
+      color: red;
+      font-size: 0.85rem;
+      margin-bottom: 10px;
+    }
 
-        button[type="submit"]:hover {
-            background-color: #003366; /* Even darker blue for hover */
-        }
+    button[type="submit"] {
+      background-color: #004080;
+      color: #add8e6;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
 
-        /* Footer */
-        .footer {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 0.9em;
-            color: #add8e6; /* Light Blue Font */
-        }
-    </style>
-    <script>
-        function validateEmail(event) {
-            const emailInput = document.getElementById('email');
-            const errorMessage = document.getElementById('error-message');
+    button:hover {
+      background-color: #003366;
+    }
 
-            if (!emailInput.value.endsWith('@uniport.edu.ng')) {
-                event.preventDefault(); // Prevent form submission
-                errorMessage.textContent = 'Please use a valid @uniport.edu.ng email address.';
-            } else {
-                errorMessage.textContent = ''; // Clear any previous errors
-            }
-        }
-    </script>
+    .footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 0.85rem;
+      color: #add8e6;
+    }
+
+    @media screen and (max-width: 500px) {
+      h1 {
+        font-size: 1.2rem;
+      }
+
+      input, button {
+        font-size: 0.95rem;
+      }
+
+      .logo img {
+        max-width: 80px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="logo">
-                <img src="Info_Tech_Logo_053325.png" alt="Logo">
-            </div>
-            <h1>Information Technology Archive</h1>
-            <p>Log in using your university email</p>
-        </div>
-        <form action="god.html" method="post" onsubmit="validateEmail(event)">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" placeholder="Enter your @uniport.edu.ng email" required>
-            <div id="error-message" class="error"></div>
-            <button type="submit" style="background-color: #004080; color: #add8e6; padding: 10px 15px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer;">
-                Log in
-            </button>
-        </form>
-        <div class="footer">
-            <p>© 2025 Information technology Archive. All rights reserved.</p>
-        </div>
+  <div class="container">
+    <div class="header">
+      <div class="logo">
+        <img src="Info_Tech_Logo_053325.png" alt="Logo" />
+      </div>
+      <h1>Information Technology Archive</h1>
+      <p>Log in using your university email</p>
     </div>
+
+    <form onsubmit="handleLogin(event)">
+      <label for="email">Email Address</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="Enter your @uniport.edu.ng email"
+        required
+      />
+      <div id="error-message" class="error"></div>
+      <button type="submit">Log in</button>
+    </form>
+
+    <div class="footer">
+      <p>© 2025 Information Technology Archive. All rights reserved.</p>
+    </div>
+  </div>
+
+  <script>
+    function handleLogin(event) {
+      event.preventDefault();
+      const email = document.getElementById("email").value;
+      const error = document.getElementById("error-message");
+
+      if (!email.endsWith("@uniport.edu.ng")) {
+        error.textContent =
+          "Please use a valid @uniport.edu.ng email address.";
+      } else {
+        error.textContent = "";
+        window.location.href = "god.html";
+      }
+    }
+  </script>
 </body>
 </html>
