@@ -326,6 +326,23 @@
                 link.classList.add('active');
             }
         });
+  // Fetch and display the list of files with download links
+  fetch('/files')
+    .then(response => response.json())
+    .then(files => {
+      const fileList = document.getElementById('file-list');
+      files.forEach(file => {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = `https://storage.googleapis.com/informationtechelibrary.appspot.com
+/${file}`;
+        a.textContent = file;
+        a.target = "_blank"; // Opens in new tab
+        li.appendChild(a);
+        fileList.appendChild(li);
+      });
+    });
+    
     </script>
 </body>
 </html>
