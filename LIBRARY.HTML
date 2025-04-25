@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Library</title>
     <style>
-        /* --- General Styles (Consistent with upload.html) --- */
+        /* --- General Styles --- */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #0d1117;
@@ -13,69 +13,44 @@
             margin: 0;
             padding: 0;
             display: flex;
-            justify-content: center;
+            flex-direction: column; /* Stack sidebar and content by default */
             align-items: center;
-            flex-direction: column; /* Align sidebar and content vertically on smaller screens */
             min-height: 100vh;
             box-sizing: border-box;
             font-size: 1rem;
         }
 
-        /* Glass Effect Background (Optional - Uncomment if you want it) */
-        /*
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('your-background-image.jpg') center/cover no-repeat;
-            filter: blur(10px);
-            z-index: -2;
-        }
-
-        body::after {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(13, 17, 23, 0.8);
-            z-index: -1;
-        }
-        */
-
         .container {
             display: flex;
-            width: 90%;
-            max-width: 1200px; /* Adjust for wider layout */
+            flex-direction: column; /* Stack items on smaller screens */
+            width: 95%; /* Take up more width on smaller screens */
+            max-width: 1200px;
             border-radius: 0.75em;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
             overflow: hidden;
             backdrop-filter: blur(8px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            margin-bottom: 2em; /* Add some space below the main content */
+            margin-bottom: 2em;
+            margin-top: 1em; /* Add some top margin for better spacing on smaller screens */
         }
 
-        /* --- Sidebar Styles (Consistent with upload.html) --- */
+        /* --- Sidebar Styles --- */
         .sidebar {
             background-color: rgba(22, 27, 34, 0.7); /* Glass effect sidebar */
             color: #c9d1d9;
             padding: 1.5em;
-            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Bottom border for separation on smaller screens */
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            width: 250px;
+            width: 100%; /* Full width on smaller screens */
             box-sizing: border-box;
         }
 
         .sidebar-logo {
             display: flex;
             align-items: center;
-            margin-bottom: 2em;
+            margin-bottom: 1.5em; /* Reduced margin on smaller screens */
             width: 100%;
         }
 
@@ -88,22 +63,22 @@
 
         .sidebar-logo h2 {
             margin: 0;
-            font-size: 1.3em;
+            font-size: 1.2em; /* Slightly smaller font on smaller screens */
             font-weight: bold;
             color: #58a6ff;
             word-break: break-word;
         }
 
         .main-navigation {
-            margin-bottom: 1.5em;
+            margin-bottom: 1em; /* Reduced margin on smaller screens */
             width: 100%;
         }
 
         .main-navigation h4 {
             color: #a1b8d1;
             margin-top: 0;
-            margin-bottom: 0.75em;
-            font-size: 0.95em;
+            margin-bottom: 0.5em; /* Reduced margin on smaller screens */
+            font-size: 0.9em; /* Slightly smaller font on smaller screens */
             font-weight: normal;
             text-transform: uppercase;
             letter-spacing: 0.03em;
@@ -112,14 +87,15 @@
         .sidebar-link {
             display: flex;
             align-items: center;
-            padding: 0.8em 1.2em;
+            padding: 0.7em 1em; /* Reduced padding on smaller screens */
             text-decoration: none;
             color: #d1d5db;
             border-radius: 0.4em;
             transition: background-color 0.2s ease-in-out;
-            margin-bottom: 0.3em;
+            margin-bottom: 0.2em; /* Reduced margin on smaller screens */
             width: 100%;
             box-sizing: border-box;
+            font-size: 0.95em; /* Slightly smaller font on smaller screens */
         }
 
         .sidebar-link:hover {
@@ -134,20 +110,30 @@
         }
 
         .sidebar-link svg {
-            margin-right: 0.8em;
-            width: 1.3em;
-            height: 1.3em;
+            margin-right: 0.6em; /* Reduced margin on smaller screens */
+            width: 1.1em; /* Reduced size on smaller screens */
+            height: 1.1em; /* Reduced size on smaller screens */
             fill: currentColor;
+        }
+
+        .account-section h4 {
+            color: #a1b8d1;
+            margin-top: 1em; /* Add some top margin to separate from main navigation */
+            margin-bottom: 0.5em;
+            font-size: 0.9em;
+            font-weight: normal;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
         }
 
         /* --- Library Content Styles --- */
         .main-content {
             flex-grow: 1;
-            padding: 2em;
+            padding: 1.5em; /* Reduced padding on smaller screens */
             background-color: rgba(22, 27, 34, 0.4); /* Subtle glass effect */
             backdrop-filter: blur(6px);
             box-sizing: border-box;
-            width: calc(100% - 250px); /* Adjust width based on sidebar */
+            width: 100%; /* Full width on smaller screens */
             display: flex;
             flex-direction: column;
             align-items: stretch; /* Make sections take full width */
@@ -156,20 +142,20 @@
         h1 {
             color: #58a6ff;
             margin-top: 0;
-            margin-bottom: 1.5em;
+            margin-bottom: 1em; /* Reduced margin on smaller screens */
             text-align: center;
-            font-size: 2em;
+            font-size: 1.8em; /* Slightly smaller font on smaller screens */
         }
 
         p {
             color: #a1b8d1;
             text-align: center;
-            margin-bottom: 2em;
-            font-size: 1.1em;
+            margin-bottom: 1.5em; /* Reduced margin on smaller screens */
+            font-size: 1em; /* Slightly smaller font on smaller screens */
         }
 
         .library-section {
-            margin-bottom: 2em;
+            margin-bottom: 1.5em; /* Reduced margin on smaller screens */
             width: 100%;
             box-sizing: border-box;
         }
@@ -177,23 +163,24 @@
         .library-section h2 {
             color: #58a6ff;
             border-bottom: 2px solid #30363d;
-            padding-bottom: 0.75em;
-            margin-bottom: 1em;
+            padding-bottom: 0.6em; /* Reduced padding on smaller screens */
+            margin-bottom: 0.8em; /* Reduced margin on smaller screens */
             text-transform: uppercase;
-            font-size: 1.3em;
+            font-size: 1.2em; /* Slightly smaller font on smaller screens */
         }
 
         .library-item {
             background-color: rgba(30, 39, 51, 0.5); /* Glass effect for items */
-            padding: 1.2em;
+            padding: 1em; /* Reduced padding on smaller screens */
             border-radius: 0.5em;
-            margin-bottom: 0.75em;
+            margin-bottom: 0.6em; /* Reduced margin on smaller screens */
             display: flex;
             flex-direction: column;
-            gap: 0.5em;
+            gap: 0.4em; /* Reduced gap on smaller screens */
             transition: background-color 0.2s ease-in-out;
             width: 100%;
             box-sizing: border-box;
+            font-size: 0.95em; /* Slightly smaller font on smaller screens */
         }
 
         .library-item:hover {
@@ -204,7 +191,7 @@
             color: #c9d1d9;
             text-decoration: none;
             font-weight: bold;
-            font-size: 1.1em;
+            font-size: 1em; /* Slightly smaller font on smaller screens */
         }
 
         .library-item a:hover {
@@ -213,84 +200,124 @@
         }
 
         .library-item span {
-            font-size: 0.9em;
+            font-size: 0.85em; /* Slightly smaller font on smaller screens */
             color: #a1b8d1;
         }
 
         #libraryList {
             display: flex;
             flex-direction: column;
-            gap: 1em;
+            gap: 0.8em; /* Reduced gap on smaller screens */
             width: 100%;
             box-sizing: border-box;
         }
 
-        /* --- Responsive Media Queries --- */
-        @media (max-width: 768px) {
+        /* --- Media Query for larger screens (make sidebar fixed and content beside it) --- */
+        @media (min-width: 769px) {
             body {
-                align-items: stretch; /* Make container full width */
+                flex-direction: row;
+                align-items: stretch;
+                justify-content: flex-start; /* Align sidebar to the left */
             }
             .container {
-                flex-direction: column;
-                align-items: stretch;
-                width: 95%;
+                flex-direction: row;
+                width: 90%;
+                margin-top: 2em;
             }
             .sidebar {
-                width: 100%;
-                max-width: none;
-                margin-right: 0;
-                margin-bottom: 1.5em;
-                border-right: none;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+                width: 250px;
+                border-right: 1px solid rgba(255, 255, 255, 0.05);
+                border-bottom: none;
+                margin-bottom: 0;
+                padding: 2em 1.5em;
+                position: sticky; /* Keep sidebar in view on scroll (if needed) */
+                top: 0;
+                height: calc(100vh - 4em); /* Adjust height based on body margins */
+                overflow-y: auto; /* Allow scrolling in sidebar if content overflows */
             }
             .main-content {
-                width: 100%;
-                padding: 1.5em;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .sidebar {
-                padding: 1em;
+                width: calc(100% - 250px);
+                padding: 2em;
             }
             .sidebar-logo {
-                flex-direction: column;
-                text-align: center;
-                margin-bottom: 1em;
-            }
-            .sidebar-logo img {
-                margin-right: 0;
-                margin-bottom: 0.5em;
+                margin-bottom: 2em;
             }
             .main-navigation {
-                margin-bottom: 1em;
+                margin-bottom: 1.5em;
+            }
+            .main-navigation h4 {
+                margin-bottom: 0.75em;
+                font-size: 0.95em;
             }
             .sidebar-link {
-                padding: 0.7em;
+                padding: 0.8em 1.2em;
+                margin-bottom: 0.3em;
+                font-size: 1em;
+            }
+            .account-section h4 {
+                margin-top: 1.5em;
                 font-size: 0.95em;
             }
             h1 {
-                font-size: 1.8em;
-                margin-bottom: 1em;
-            }
-            p {
-                font-size: 1em;
+                font-size: 2em;
+                text-align: left;
                 margin-bottom: 1.5em;
             }
+            p {
+                text-align: left;
+                margin-bottom: 2em;
+                font-size: 1.1em;
+            }
+            .library-section {
+                margin-bottom: 2em;
+            }
             .library-section h2 {
-                font-size: 1.2em;
-                margin-bottom: 0.8em;
-                padding-bottom: 0.6em;
+                font-size: 1.3em;
+                margin-bottom: 1em;
+                padding-bottom: 0.75em;
             }
             .library-item {
-                padding: 1em;
-                gap: 0.4em;
+                padding: 1.2em;
+                margin-bottom: 0.75em;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                gap: 1em;
             }
             .library-item a {
-                font-size: 1em;
+                font-size: 1.1em;
             }
             .library-item span {
-                font-size: 0.85em;
+                font-size: 0.9em;
+            }
+            #libraryList {
+                gap: 1em;
+            }
+        }
+
+        /* --- Further adjustments for very small screens (optional) --- */
+        @media (max-width: 360px) {
+            .sidebar-logo h2 {
+                font-size: 1.1em;
+            }
+            .sidebar-link {
+                font-size: 0.9em;
+                padding: 0.6em 0.8em;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            p {
+                font-size: 0.9em;
+            }
+            .library-section h2 {
+                font-size: 1.1em;
+            }
+            .library-item a {
+                font-size: 0.95em;
+            }
+            .library-item span {
+                font-size: 0.8em;
             }
         }
     </style>
@@ -322,7 +349,7 @@
             <p>Browse all uploaded materials alphabetically.</p>
 
             <div id="libraryList">
-                </div>
+            </div>
         </div>
     </div>
 
@@ -379,5 +406,6 @@
             }
         });
     </script>
+    <script src="enhanced-dashboard.js"></script>
 </body>
 </html>

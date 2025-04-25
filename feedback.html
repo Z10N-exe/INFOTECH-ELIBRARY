@@ -20,21 +20,21 @@
         }
 
         .glass {
-    background: rgba(255, 255, 255, 0.2); /* Semi-transparent white background */
-    border-radius: 10px; /* Optional: for rounded corners */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow for depth */
-    backdrop-filter: blur(10px); /* The magic blur effect */
-    -webkit-backdrop-filter: blur(10px); /* For Safari */
-}
+            background: rgba(255, 255, 255, 0.2); /* Semi-transparent white background */
+            border-radius: 10px; /* Optional: for rounded corners */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow for depth */
+            backdrop-filter: blur(10px); /* The magic blur effect */
+            -webkit-backdrop-filter: blur(10px); /* For Safari */
+        }
 
-/* You might need to adjust padding and other styles for the element */
-.glass-content {
-    padding: 20px;
-}
+        /* You might need to adjust padding and other styles for the element */
+        .glass-content {
+            padding: 20px;
+        }
 
         /* --- Container Styles --- */
         .container {
-            width: 100%;
+            width: 90%;
             max-width: 650px;
             margin: 50px auto;
             padding: 40px;
@@ -113,7 +113,7 @@
             background-color: #3d8bf1;
             transform: translateY(-2px);
         }
-         button[type="submit"]:active {
+        button[type="submit"]:active {
             transform: translateY(0);
             background-color: #58a6ff;
         }
@@ -147,7 +147,7 @@
             .container{
                 padding: 20px;
             }
-             h1{
+            h1{
                 font-size: 2em;
             }
             label{
@@ -171,7 +171,7 @@
                 flex-direction: column;
                 align-items: flex-start;
             }
-             .feedback-options label {
+            .feedback-options label {
                 margin-bottom: 5px;
             }
         }
@@ -196,7 +196,7 @@
                 alert("Please select a feedback type.");
                 return false;
             }
-             if (feedbackType === "others" && !comment) {
+             if (feedbackType && feedbackType.value === "others" && !comment) {
                 alert("Please enter your comment.");
                 return false;
             }
@@ -215,11 +215,11 @@
         }
 
         function showAdditionalComments() {
-            const feedbackType = document.querySelector('input[name="feedback_type"]:checked').value;
+            const feedbackType = document.querySelector('input[name="feedback_type"]:checked');
             const additionalCommentsLabel = document.getElementById("additional-comments-label");
             const commentInput = document.getElementById("comment");
 
-            if (feedbackType === "others") {
+            if (feedbackType && feedbackType.value === "others") {
                 commentInput.classList.remove("hidden");
                 additionalCommentsLabel.classList.remove("hidden");
             } else {

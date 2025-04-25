@@ -13,12 +13,12 @@
             margin: 0;
             padding: 0;
             display: flex;
-            justify-content: center; /* Center content horizontally */
-            align-items: center; /* Center content vertically */
+            flex-direction: column; /* Stack sidebar and content for smaller screens */
+            align-items: center; /* Center content horizontally */
             min-height: 100vh;
             box-sizing: border-box;
             font-size: 1rem;
-            overflow: hidden; /* Prevent scroll during loading */
+            overflow-x: hidden; /* Prevent horizontal scroll */
         }
 
         /* Glass Effect Background */
@@ -47,13 +47,16 @@
 
         .container {
             display: flex;
-            width: 90%;
+            flex-direction: column; /* Stack sidebar and content for smaller screens */
+            width: 95%; /* Take up more width on smaller screens */
             max-width: 900px; /* Adjust for wider layout */
             border-radius: 0.75em;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
             overflow: hidden; /* Clip rounded corners */
             backdrop-filter: blur(8px);
             border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 1em; /* Add some top margin */
+            margin-bottom: 1.5em; /* Add some bottom margin */
         }
 
         /* --- Sidebar Styles --- */
@@ -61,18 +64,18 @@
             background-color: rgba(22, 27, 34, 0.7); /* Glass effect sidebar */
             color: #c9d1d9;
             padding: 1.5em;
-            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Bottom border for separation */
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            width: 250px; /* Fixed width for sidebar */
+            width: 100%; /* Full width on smaller screens */
             box-sizing: border-box;
         }
 
         .sidebar-logo {
             display: flex;
             align-items: center;
-            margin-bottom: 2em;
+            margin-bottom: 1.5em; /* Reduced margin */
             width: 100%;
         }
 
@@ -85,22 +88,22 @@
 
         .sidebar-logo h2 {
             margin: 0;
-            font-size: 1.3em;
+            font-size: 1.2em; /* Slightly smaller font */
             font-weight: bold;
             color: #58a6ff;
             word-break: break-word;
         }
 
         .main-navigation {
-            margin-bottom: 1.5em;
+            margin-bottom: 1em; /* Reduced margin */
             width: 100%;
         }
 
         .main-navigation h4 {
             color: #a1b8d1;
             margin-top: 0;
-            margin-bottom: 0.75em;
-            font-size: 0.95em;
+            margin-bottom: 0.5em; /* Reduced margin */
+            font-size: 0.9em; /* Slightly smaller font */
             font-weight: normal;
             text-transform: uppercase;
             letter-spacing: 0.03em;
@@ -109,14 +112,15 @@
         .sidebar-link {
             display: flex;
             align-items: center;
-            padding: 0.8em 1.2em;
+            padding: 0.7em 1em; /* Reduced padding */
             text-decoration: none;
             color: #d1d5db;
             border-radius: 0.4em;
             transition: background-color 0.2s ease-in-out;
-            margin-bottom: 0.3em;
+            margin-bottom: 0.2em; /* Reduced margin */
             width: 100%;
             box-sizing: border-box;
+            font-size: 0.95em; /* Slightly smaller font */
         }
 
         .sidebar-link:hover {
@@ -131,9 +135,9 @@
         }
 
         .sidebar-link svg {
-            margin-right: 0.8em;
-            width: 1.3em;
-            height: 1.3em;
+            margin-right: 0.6em; /* Reduced margin */
+            width: 1.1em; /* Reduced size */
+            height: 1.1em; /* Reduced size */
             fill: currentColor;
         }
 
@@ -143,39 +147,46 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            width: calc(100% - 250px); /* Adjust width based on sidebar */
+            width: 100%; /* Full width on smaller screens */
             box-sizing: border-box;
-            padding: 2em;
+            padding: 1.5em; /* Reduced padding */
             background-color: rgba(22, 27, 34, 0.4); /* Subtle glass effect */
             backdrop-filter: blur(6px);
         }
 
         .upload-container {
-            width: 90%;
+            width: 95%; /* Take up more width */
             max-width: 800px;
-            padding: 2.5em;
+            padding: 2em; /* Reduced padding */
             border-radius: 0.6em;
-            margin-bottom: 1.5em;
+            margin-bottom: 1em; /* Reduced margin */
             box-sizing: border-box;
         }
 
         h2 {
             color: #58a6ff;
             margin-top: 0;
-            margin-bottom: 0.75em;
+            margin-bottom: 0.6em; /* Reduced margin */
             font-weight: bold;
             text-align: center;
-            font-size: 1.8em;
+            font-size: 1.6em; /* Slightly smaller font */
+        }
+
+        p {
+            text-align: center;
+            margin-bottom: 1.2em; /* Reduced margin */
+            font-size: 0.95em; /* Slightly smaller font */
+            color: #a1b8d1;
         }
 
         .document-upload {
             background-color: rgba(30, 39, 51, 0.5); /* Glass effect for upload area */
             border: 2px dashed #444c56;
             border-radius: 0.5em;
-            padding: 3em;
+            padding: 2em; /* Reduced padding */
             text-align: center;
             cursor: pointer;
-            margin-bottom: 2em;
+            margin-bottom: 1.5em; /* Reduced margin */
             transition: background-color 0.2s ease-in-out;
         }
 
@@ -184,8 +195,8 @@
         }
 
         .upload-icon {
-            font-size: 3.5em;
-            margin-bottom: 1.2em;
+            font-size: 3em; /* Reduced size */
+            margin-bottom: 1em; /* Reduced margin */
             color: #58a6ff;
         }
 
@@ -196,11 +207,11 @@
         button[type="submit"] {
             background-color: #58a6ff;
             color: #fff;
-            padding: 1em 2em;
+            padding: 0.9em 1.8em; /* Reduced padding */
             border: none;
             border-radius: 0.5em;
             cursor: pointer;
-            font-size: 1.1em;
+            font-size: 1em; /* Slightly smaller font */
             transition: background-color 0.2s ease-in-out, transform 0.1s ease;
             width: 100%;
             box-sizing: border-box;
@@ -212,25 +223,25 @@
         }
 
         #result {
-            margin-top: 1.5em;
+            margin-top: 1em; /* Reduced margin */
             color: #58a6ff;
             text-align: center;
             word-break: break-word;
-            font-size: 1.1em;
+            font-size: 0.95em; /* Slightly smaller font */
         }
 
         .form-group {
-            margin-bottom: 1.5em;
+            margin-bottom: 1.2em; /* Reduced margin */
             width: 100%;
             box-sizing: border-box;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 0.6em;
+            margin-bottom: 0.5em; /* Reduced margin */
             color: #a1b8d1;
             font-weight: bold;
-            font-size: 1.05em;
+            font-size: 1em; /* Slightly smaller font */
             text-align: left;
         }
 
@@ -238,18 +249,18 @@
         .form-group input[type="text"],
         .form-group textarea {
             width: 100%;
-            padding: 1em;
+            padding: 0.9em; /* Reduced padding */
             border: 1px solid #30363d;
             border-radius: 0.4em;
             background-color: #21262d;
             color: #c9d1d9;
             box-sizing: border-box;
-            font-size: 1em;
+            font-size: 0.95em; /* Slightly smaller font */
         }
 
         .form-group textarea {
             resize: vertical;
-            min-height: 8em;
+            min-height: 6em; /* Reduced height */
         }
 
         /* --- Loading Spinner --- */
@@ -278,8 +289,8 @@
             border: 4px solid rgba(255, 255, 255, 0.3);
             border-top: 4px solid #58a6ff;
             border-radius: 50%;
-            width: 60px;
-            height: 60px;
+            width: 50px; /* Reduced size */
+            height: 50px; /* Reduced size */
             animation: spin 1s linear infinite;
         }
 
@@ -288,91 +299,82 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* --- Responsive Media Queries --- */
-        @media (max-width: 768px) {
-            .container {
-                flex-direction: column;
+        /* --- Media Query for larger screens --- */
+        @media (min-width: 769px) {
+            body {
+                flex-direction: row;
                 align-items: stretch;
+                justify-content: flex-start;
             }
-
+            .container {
+                flex-direction: row;
+                width: 90%;
+                margin-top: 2em;
+            }
             .sidebar {
-                width: 100%;
-                max-width: none;
-                margin-right: 0;
-                margin-bottom: 1.5em;
-                border-right: none;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+                width: 250px;
+                border-right: 1px solid rgba(255, 255, 255, 0.05);
+                border-bottom: none;
+                margin-bottom: 0;
+                padding: 2em 1.5em;
+                position: sticky;
+                top: 0;
+                height: calc(100vh - 4em);
+                overflow-y: auto;
             }
-
             .main-content {
-                width: 100%;
-                padding: 1.5em;
-            }
-
-            .upload-container {
-                width: 95%;
+                width: calc(100% - 250px);
                 padding: 2em;
+                align-items: center; /* Center content in the main area on larger screens */
             }
-        }
-
-        @media (max-width: 480px) {
-            .sidebar {
+            .upload-container {
+                width: 80%;
+                padding: 2.5em;
+                margin-bottom: 1.5em;
+            }
+            h2 {
+                font-size: 1.8em;
+                text-align: left;
+                margin-bottom: 0.75em;
+            }
+            p {
+                font-size: 1.1em;
+                text-align: left;
+                margin-bottom: 2em;
+            }
+            .document-upload {
+                padding: 3em;
+                margin-bottom: 2em;
+            }
+            .upload-icon {
+                font-size: 3.5em;
+                margin-bottom: 1.2em;
+            }
+            button[type="submit"] {
+                font-size: 1.1em;
+                padding: 1em 2em;
+                width: auto; /* Adjust width on larger screens */
+            }
+            #result {
+                font-size: 1.1em;
+                text-align: left;
+                margin-top: 1.5em;
+            }
+            .form-group {
+                margin-bottom: 1.5em;
+            }
+            .form-group label {
+                font-size: 1.05em;
+                text-align: left;
+            }
+            .form-group select,
+            .form-group input[type="text"],
+            .form-group textarea {
+                font-size: 1em;
                 padding: 1em;
             }
-
-            .sidebar-logo {
-                flex-direction: column;
-                text-align: center;
-                margin-bottom: 1.5em;
-            }
-
-            .sidebar-logo img {
-                margin-right: 0;
-                margin-bottom: 0.5em;
-            }
-
-            .main-navigation {
-                margin-bottom: 1em;
-            }
-
-            .sidebar-link {
-                padding: 0.7em;
-                font-size: 0.95em;
-            }
-
-            .upload-container {
-                padding: 1.5em;
-            }
-
-            .document-upload {
-                padding: 2em;
-            }
-
-            .upload-icon {
-                font-size: 3em;
-                margin-bottom: 1em;
-            }
-
-            .form-group label {
-                font-size: 0.95em;
-            }
-
-            .form-group input, .form-group select, .form-group textarea {
-                padding: 0.9em;
-                font-size: 0.95em;
-            }
-
-            h2 {
-                font-size: 1.6em;
-            }
-
-            #result {
-                font-size: 1em;
-            }
-
-            button[type="submit"] {
-                padding: 0.9em 1.8em;
-                font-size: 1em;
+            .form-group textarea {
+                min-height: 8em;
             }
         }
     </style>
@@ -437,9 +439,6 @@
                 </form>
 
                 <p id="result"></p>
-            </div>
-        </div>
-    </div>
     <script>
         const form = document.getElementById('uploadForm');
         const fileInput = document.getElementById('pdfInput');
@@ -503,5 +502,6 @@
     </script>
 
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="enhanced-dashboard.js"></script>
 </body>
 </html>

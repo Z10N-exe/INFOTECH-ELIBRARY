@@ -16,13 +16,13 @@
 
         /* Container with Glass Effect */
         .profile-container {
-            width: 100%;
+            width: 90%;
             max-width: 400px;
             margin: 100px auto; /* Center vertically more like the login */
-            padding: 20px;
+            padding: 40px; /* Increased padding for better spacing */
             background: rgba(0, 26, 64, 0.6); /* Slightly darker blue with transparency */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            border-radius: 8px;
+            border-radius: 12px; /* More rounded corners */
             text-align: center; /* Center the content within the container */
             backdrop-filter: blur(10px); /* Apply the blur effect */
             border: 1px solid rgba(255, 255, 255, 0.1); /* Optional: subtle border */
@@ -30,24 +30,27 @@
 
         h1 {
             color: #add8e6; /* Light Blue Font */
-            margin-bottom: 20px;
+            margin-bottom: 30px; /* Increased margin */
+            font-size: 2em; /* Larger heading */
         }
 
         p {
-            font-size: 1.1em;
-            margin-bottom: 20px;
+            font-size: 1.2em; /* Slightly larger paragraph text */
+            margin-bottom: 30px; /* Increased margin */
         }
 
         .logout-button {
             background-color: #004080; /* Dark Blue */
             color: #add8e6; /* Light Blue Font */
-            padding: 10px 15px;
+            padding: 12px 20px; /* Increased padding */
             border: none;
-            border-radius: 5px;
+            border-radius: 8px; /* More rounded corners */
             font-weight: bold;
             cursor: pointer;
             text-decoration: none; /* Remove underline from link */
             display: inline-block; /* Allows setting padding and margin */
+            transition: background-color 0.3s ease; /* Smooth transition for hover */
+            font-size: 1.1em; /* Slightly larger button text */
         }
 
         .logout-button:hover {
@@ -59,7 +62,7 @@
     <div class="profile-container">
         <h1>User Profile</h1>
         <p id="greeting">Hello, User!</p>
-        <a href="god.html" class="logout-button">Go back </a>
+        <a href="god.html" class="logout-button">Go back</a>
     </div>
     <script>
         // This script will be replaced by server-side rendering in a real application
@@ -73,4 +76,5 @@
 
     </script>
 </body>
+<script src="enhanced-dashboard.js"></script>
 </html>
