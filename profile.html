@@ -14,16 +14,18 @@
             color: #add8e6; /* Light Blue Font */
         }
 
-        /* Container */
+        /* Container with Glass Effect */
         .profile-container {
             width: 100%;
             max-width: 400px;
             margin: 100px auto; /* Center vertically more like the login */
             padding: 20px;
-            background: #001a40; /* Slightly darker blue for container */
+            background: rgba(0, 26, 64, 0.6); /* Slightly darker blue with transparency */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             border-radius: 8px;
             text-align: center; /* Center the content within the container */
+            backdrop-filter: blur(10px); /* Apply the blur effect */
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Optional: subtle border */
         }
 
         h1 {
@@ -68,7 +70,7 @@
         if (userEmail) {
             greetingElement.textContent = `Hello, ${userEmail}!`;
         }
-        
+
     </script>
 </body>
 </html>

@@ -1,10 +1,7 @@
-// server.js
-
 const express = require('express');
 const cors = require('cors');
 const multer = require('multer');
 const admin = require('firebase-admin');
-const fs = require('fs');
 const path = require('path');
 
 const app = express();
@@ -14,8 +11,8 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-// Multer setup for file uploads
-const upload = multer({ dest: 'uploads/' });
+// Multer setup for file uploads (no need to store locally anymore)
+const upload = multer({ dest: 'uploads/' }); // Store in memory
 
 // Firebase Admin SDK initialization
 const serviceAccount = require('./serviceAccountKey.json'); // 🔐 Downloaded from Firebase
@@ -33,38 +30,41 @@ let uploadedFiles = [];
 // Upload route
 app.post('/upload', upload.single('pdf'), async (req, res) => {
   try {
-    const filePath = path.join(__dirname, req.file.path);
-    const destination = `documents/${req.file.originalname}`;
+    if (!req.file) {
+      return res.status(400).json({ error: 'No file uploaded.' });
+    }
 
-    await bucket.upload(filePath, {
-      destination: destination,
+    const fileBuffer = req.file.buffer;
+    const originalName = req.file.originalname;
+    const destination = `documents/${originalName}`;
+    const contentType = req.file.mimetype;
+
+    const file = bucket.file(destination);
+    await file.save(fileBuffer, {
       metadata: {
-        contentType: req.file.mimetype
+        contentType: contentType
       }
     });
 
     // Create signed URL for download
-    const file = bucket.file(destination);
     const [url] = await file.getSignedUrl({
       action: 'read',
       expires: '03-01-2030'
     });
 
     uploadedFiles.push({
-      name: req.file.originalname,
+      name: originalName,
       url
     });
 
-    fs.unlinkSync(filePath); // remove temp file
-
     res.status(200).json({
-      message: 'File uploaded!',
-      name: req.file.originalname,
+      message: 'File uploaded to Firebase Storage!',
+      name: originalName,
       url
     });
   } catch (err) {
-    console.error('Upload error:', err);
-    res.status(500).json({ error: 'Upload failed' });
+    console.error('Firebase Storage upload error:', err);
+    res.status(500).json({ error: 'Failed to upload file to Firebase Storage' });
   }
 });
 

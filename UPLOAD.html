@@ -5,103 +5,136 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Upload Document</title>
     <style>
-        /* --- General Styles (adjustments for small screens) --- */
+        /* --- General Styles --- */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #0d1117;
-            color: #c9d1d9;
+            background-color: #0d1117; /* Dark background */
+            color: #c9d1d9; /* Light text */
             margin: 0;
             padding: 0;
             display: flex;
-            flex-direction: column;
-            align-items: center;
+            justify-content: center; /* Center content horizontally */
+            align-items: center; /* Center content vertically */
             min-height: 100vh;
             box-sizing: border-box;
-            font-size: 1rem; /* Default font size (1rem = 16px) */
+            font-size: 1rem;
+            overflow: hidden; /* Prevent scroll during loading */
+        }
+
+        /* Glass Effect Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('your-background-image.jpg') center/cover no-repeat; /* Replace with your image */
+            filter: blur(10px);
+            z-index: -2;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(13, 17, 23, 0.8); /* Dark background overlay */
+            z-index: -1;
+        }
+
+        .container {
+            display: flex;
+            width: 90%;
+            max-width: 900px; /* Adjust for wider layout */
+            border-radius: 0.75em;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+            overflow: hidden; /* Clip rounded corners */
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         /* --- Sidebar Styles --- */
         .sidebar {
-            background-color: #161b22;
+            background-color: rgba(22, 27, 34, 0.7); /* Glass effect sidebar */
             color: #c9d1d9;
-            padding: 1.25em; /* 1.25em = 20px */
-            border-radius: 0.625em; /* 0.625em = 10px */
-            margin-right: 1.25em; /* 1.25em = 20px */
-            margin-bottom: 1.25em; /* 1.25em = 20px */
+            padding: 1.5em;
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            width: 100%;
-            max-width: 18.75em; /* 18.75em = 300px */
+            width: 250px; /* Fixed width for sidebar */
             box-sizing: border-box;
         }
 
         .sidebar-logo {
             display: flex;
             align-items: center;
-            margin-bottom: 1.875em; /* 1.875em = 30px */
+            margin-bottom: 2em;
             width: 100%;
         }
 
         .sidebar-logo img {
-            width: 1.875em; /* 1.875em = 30px */
-            height: 1.875em; /* 1.875em = 30px */
-            margin-right: 0.625em; /* 0.625em = 10px */
-            border-radius: 0.3125em; /* 0.3125em = 5px */
+            width: 2em;
+            height: 2em;
+            margin-right: 0.75em;
+            border-radius: 0.3em;
         }
 
         .sidebar-logo h2 {
             margin: 0;
-            font-size: 1.2em;
+            font-size: 1.3em;
             font-weight: bold;
             color: #58a6ff;
             word-break: break-word;
         }
 
         .main-navigation {
-            margin-bottom: 1.25em; /* 1.25em = 20px */
+            margin-bottom: 1.5em;
             width: 100%;
         }
 
         .main-navigation h4 {
             color: #a1b8d1;
             margin-top: 0;
-            margin-bottom: 0.625em; /* 10px */
-            font-size: 0.9em;
+            margin-bottom: 0.75em;
+            font-size: 0.95em;
             font-weight: normal;
-            text-transform: uppercase; /* Added to match the <h2> in the second code */
-            letter-spacing: 0.025em; /* Added for subtle spacing */
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
         }
 
         .sidebar-link {
             display: flex;
             align-items: center;
-            padding: 0.75rem 1rem; /* Matching padding */
+            padding: 0.8em 1.2em;
             text-decoration: none;
-            color: #d1d5db; /* Matching text color */
-            border-radius: 0.375rem; /* Matching border radius */
+            color: #d1d5db;
+            border-radius: 0.4em;
             transition: background-color 0.2s ease-in-out;
-            margin-bottom: 0.25rem; /* Adjusted margin for list items */
+            margin-bottom: 0.3em;
             width: 100%;
             box-sizing: border-box;
         }
 
         .sidebar-link:hover {
-            background-color: #4b5563; /* Matching hover background */
-            color: #e2e8f0; /* Matching hover text color */
+            background-color: #4b5563;
+            color: #e2e8f0;
         }
 
         .sidebar-link.active {
-            background-color: #4299e1; /* Matching active background */
-            color: #f0f8ff; /* Matching active text color */
-            font-weight: 600; /* Matching active font weight */
+            background-color: #4299e1;
+            color: #f0f8ff;
+            font-weight: 600;
         }
 
         .sidebar-link svg {
-            margin-right: 0.75rem; /* Space for the icon */
-            width: 1.25rem; /* Icon width */
-            height: 1.25rem; /* Icon height */
-            fill: currentColor; /* Inherit text color for the icon */
+            margin-right: 0.8em;
+            width: 1.3em;
+            height: 1.3em;
+            fill: currentColor;
         }
 
         /* --- Main Content Styles --- */
@@ -110,47 +143,49 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            width: 100%;
+            width: calc(100% - 250px); /* Adjust width based on sidebar */
             box-sizing: border-box;
-            padding: 1.25em; /* 1.25em = 20px */
+            padding: 2em;
+            background-color: rgba(22, 27, 34, 0.4); /* Subtle glass effect */
+            backdrop-filter: blur(6px);
         }
 
         .upload-container {
-            background-color: #161b22;
-            border-radius: 0.625em; /* 0.625em = 10px */
-            padding: 1.875em; /* 1.875em = 30px */
-            width: 95%;
-            max-width: 43.75em; /* 43.75em = 700px */
-            margin-bottom: 1.25em; /* 1.25em = 20px */
+            width: 90%;
+            max-width: 800px;
+            padding: 2.5em;
+            border-radius: 0.6em;
+            margin-bottom: 1.5em;
             box-sizing: border-box;
         }
 
         h2 {
             color: #58a6ff;
             margin-top: 0;
-            margin-bottom: 0.625em; /* 0.625em = 10px */
+            margin-bottom: 0.75em;
             font-weight: bold;
             text-align: center;
+            font-size: 1.8em;
         }
 
         .document-upload {
-            background-color: #1e2733;
+            background-color: rgba(30, 39, 51, 0.5); /* Glass effect for upload area */
             border: 2px dashed #444c56;
-            border-radius: 0.5em; /* 0.5em = 8px */
-            padding: 2.5em; /* 2.5em = 40px */
+            border-radius: 0.5em;
+            padding: 3em;
             text-align: center;
             cursor: pointer;
-            margin-bottom: 1.5625em; /* 1.5625em = 25px */
+            margin-bottom: 2em;
             transition: background-color 0.2s ease-in-out;
         }
 
         .document-upload:hover {
-            background-color: #28303c;
+            background-color: rgba(40, 48, 60, 0.5);
         }
 
         .upload-icon {
-            font-size: 3em; /* 3em = 48px */
-            margin-bottom: 1em; /* 1em = 16px */
+            font-size: 3.5em;
+            margin-bottom: 1.2em;
             color: #58a6ff;
         }
 
@@ -161,39 +196,41 @@
         button[type="submit"] {
             background-color: #58a6ff;
             color: #fff;
-            padding: 0.875em 1.75em; /* 0.875em = 14px, 1.75em = 28px */
+            padding: 1em 2em;
             border: none;
-            border-radius: 0.5em; /* 0.5em = 8px */
+            border-radius: 0.5em;
             cursor: pointer;
             font-size: 1.1em;
-            transition: background-color 0.2s ease-in-out;
+            transition: background-color 0.2s ease-in-out, transform 0.1s ease;
             width: 100%;
             box-sizing: border-box;
         }
 
         button[type="submit"]:hover {
             background-color: #3d8bf1;
+            transform: translateY(-1px);
         }
 
         #result {
-            margin-top: 1.25em; /* 1.25em = 20px */
+            margin-top: 1.5em;
             color: #58a6ff;
             text-align: center;
             word-break: break-word;
+            font-size: 1.1em;
         }
 
         .form-group {
-            margin-bottom: 1.25em; /* 1.25em = 20px */
+            margin-bottom: 1.5em;
             width: 100%;
             box-sizing: border-box;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 0.5em; /* 0.5em = 8px */
+            margin-bottom: 0.6em;
             color: #a1b8d1;
             font-weight: bold;
-            font-size: 1em;
+            font-size: 1.05em;
             text-align: left;
         }
 
@@ -201,9 +238,9 @@
         .form-group input[type="text"],
         .form-group textarea {
             width: 100%;
-            padding: 0.875em; /* 0.875em = 14px */
+            padding: 1em;
             border: 1px solid #30363d;
-            border-radius: 0.375em; /* 0.375em = 6px */
+            border-radius: 0.4em;
             background-color: #21262d;
             color: #c9d1d9;
             box-sizing: border-box;
@@ -212,183 +249,249 @@
 
         .form-group textarea {
             resize: vertical;
-            min-height: 6.25em; /* 6.25em = 100px */
+            min-height: 8em;
+        }
+
+        /* --- Loading Spinner --- */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .loading-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #58a6ff;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         /* --- Responsive Media Queries --- */
         @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
             .sidebar {
-                margin-right: 0;
-                margin-bottom: 1.25em;
                 width: 100%;
                 max-width: none;
+                margin-right: 0;
+                margin-bottom: 1.5em;
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             }
 
             .main-content {
-                padding-right: 0;
                 width: 100%;
+                padding: 1.5em;
             }
 
             .upload-container {
                 width: 95%;
-                padding: 1.25em; /* 1.25em = 20px */
-            }
-
-            .form-group {
-                width: 100%;
-            }
-
-            button[type="submit"] {
-                width: 100%;
+                padding: 2em;
             }
         }
 
         @media (max-width: 480px) {
             .sidebar {
-                padding: 1em; /* 1em = 16px */
+                padding: 1em;
             }
 
             .sidebar-logo {
                 flex-direction: column;
                 text-align: center;
+                margin-bottom: 1.5em;
             }
 
             .sidebar-logo img {
                 margin-right: 0;
-                margin-bottom: 0.625em; /* 0.625em = 10px */
+                margin-bottom: 0.5em;
             }
 
             .main-navigation {
-                margin-bottom: 0.625em; /* 0.625em = 10px */
+                margin-bottom: 1em;
             }
 
             .sidebar-link {
-                padding: 0.625em; /* 0.625em = 10px */
+                padding: 0.7em;
+                font-size: 0.95em;
             }
 
             .upload-container {
-                padding: 1em; /* 1em = 16px */
+                padding: 1.5em;
             }
 
             .document-upload {
-                padding: 1.25em; /* 1.25em = 20px */
+                padding: 2em;
             }
 
-            .document-upload i {
-                font-size: 2.5em; /* 2.5em = 40px */
+            .upload-icon {
+                font-size: 3em;
+                margin-bottom: 1em;
             }
 
             .form-group label {
-                font-size: 0.9em; /* 0.9em = 14px */
+                font-size: 0.95em;
             }
 
             .form-group input, .form-group select, .form-group textarea {
-                padding: 1em; /* 1em = 16px */
-                font-size: 0.9em; /* 0.9em = 14px */
+                padding: 0.9em;
+                font-size: 0.95em;
+            }
+
+            h2 {
+                font-size: 1.6em;
+            }
+
+            #result {
+                font-size: 1em;
+            }
+
+            button[type="submit"] {
+                padding: 0.9em 1.8em;
+                font-size: 1em;
             }
         }
     </style>
 </head>
 <body>
-
-    <div class="sidebar">
-        <div class="sidebar-logo">
-            <img src="Info_Tech_Logo_053325.png" alt="Logo">
-            <h2>E-Library</h2>
-        </div>
-        <div class="main-navigation">
-            <h4>Main Navigation</h4>
-            <a href="god.html" class="sidebar-link">Overview</a>
-            <a href="upload.html" class="sidebar-link active">Upload</a>
-            <a href="library.html" class="sidebar-link">Library</a>
-            <a href="#" class="sidebar-link">Feedback</a>
-        </div>
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner"></div>
     </div>
-
-    <div class="main-content">
-        <div class="upload-container">
-            <h2>Upload Document</h2>
-            <p>Share your academic resources with the community.</p>
-
-            <div class="document-upload" onclick="document.getElementById('pdfInput').click();">
-                <i class="fas fa-upload upload-icon"></i>
-                <p id="selectedFileText">Drop your file here or click to browse</p>
-                <p>PDF, DOC, DOCX up to 10MB</p>
+    <div class="container">
+        <div class="sidebar">
+            <div class="sidebar-logo">
+                <img src="Info_Tech_Logo_053325.png" alt="Logo">
+                <h2>E-Library</h2>
             </div>
+            <div class="main-navigation">
+                <h4>Main Navigation</h4>
+                <a href="god.html" class="sidebar-link">Overview</a>
+                <a href="UPLOAD.html" class="sidebar-link active">Upload</a>
+                <a href="LIBRARY.HTML" class="sidebar-link">Library</a>
+                <a href="feedback.html" class="sidebar-link">Feedback</a>
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="upload-container">
+                <h2>Upload Document</h2>
+                <p>Share your academic resources with the community.</p>
 
-            <form id="uploadForm" enctype="multipart/form-data">
-                <input type="file" name="pdf" id="pdfInput" accept=".pdf,.doc,.docx" required />
-
-                <div class="form-group">
-                    <label for="level">Level *</label>
-                    <select name="level" id="level">
-                        <option value="100">100</option>
-                        <option value="200" selected>200</option>
-                        <option value="300">300</option>
-                    </select>
+                <div class="document-upload" onclick="document.getElementById('pdfInput').click();">
+                    <i class="fas fa-upload upload-icon"></i>
+                    <p id="selectedFileText">Drop your file here or click to browse</p>
+                    <p>PDF, DOC, DOCX up to 10MB</p>
                 </div>
 
-                <div class="form-group">
-                    <label for="courseCode">Course Code *</label>
-                    <input type="text" name="courseCode" id="courseCode" placeholder="e.g., IFT 236.2" required />
-                </div>
+                <form id="uploadForm" enctype="multipart/form-data">
+                    <input type="file" name="pdf" id="pdfInput" accept=".pdf,.doc,.docx" required />
 
-                <div class="form-group">
-                    <label for="courseTitle">Course Title *</label>
-                    <input type="text" name="courseTitle" id="courseTitle" placeholder="e.g., Intro to Computer Science" required />
-                </div>
+                    <div class="form-group">
+                        <label for="level">Level *</label>
+                        <select name="level" id="level">
+                            <option value="100">100</option>
+                            <option value="200" selected>200</option>
+                            <option value="300">300</option>
+                        </select>
+                    </div>
 
-                <div class="form-group">
-                    <label for="description">Description</label>
-                    <textarea name="description" id="description" rows="4" placeholder="Add a brief description of the document..."></textarea>
-                </div>
+                    <div class="form-group">
+                        <label for="courseCode">Course Code *</label>
+                        <input type="text" name="courseCode" id="courseCode" placeholder="e.g., IFT 236.2" required />
+                    </div>
 
-                <button type="submit">Upload</button>
-            </form>
+                    <div class="form-group">
+                        <label for="courseTitle">Course Title *</label>
+                        <input type="text" name="courseTitle" id="courseTitle" placeholder="e.g., Intro to Computer Science" required />
+                    </div>
 
-            <p id="result"></p>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea name="description" id="description" rows="4" placeholder="Add a brief description of the document..."></textarea>
+                    </div>
+
+                    <button type="submit">Upload</button>
+                </form>
+
+                <p id="result"></p>
+            </div>
         </div>
     </div>
     <script>
-        const greetingElement = document.getElementById('greeting');
-        const userEmail = sessionStorage.getItem('userEmail'); // Get user's email
-    
-        if (userEmail) {
-            greetingElement.textContent = `Hello, ${userEmail}!`;
-        }
-    
-        // Only execute upload logic if the page contains an upload form
         const form = document.getElementById('uploadForm');
         const fileInput = document.getElementById('pdfInput');
         const result = document.getElementById('result');
         const fileText = document.getElementById('selectedFileText');
-    
+        const loadingOverlay = document.getElementById('loadingOverlay');
+
+        function showLoading() {
+            loadingOverlay.classList.add('active');
+        }
+
+        function hideLoading() {
+            loadingOverlay.classList.remove('active');
+        }
+
         if (form) {
             form.addEventListener('submit', function (e) {
                 e.preventDefault();
-                
+                showLoading(); // Show loading spinner on submit
+
                 const formData = new FormData(form);
                 const fileName = fileInput.files[0]?.name || 'Your document';
-    
+
                 fetch('http://localhost:5000/upload', {
                     method: 'POST',
                     body: formData
                 })
                 .then(res => res.json())
                 .then(data => {
-                    result.innerHTML = `
-                        <strong>${fileName}</strong> uploaded successfully!<br>
-                        <a href="${data.url}" target="_blank">Download Document</a>
-                    `;
-                    form.reset();
-                    fileText.textContent = "Drop your file here or click to browse";
+                    hideLoading(); // Hide loading spinner after response
+                    if (data.message && data.message.includes('uploaded')) {
+                        result.textContent = 'Upload successful!';
+                        console.log('Upload successful:', data);
+                        form.reset();
+                        fileText.textContent = "Drop your file here or click to browse";
+                    } else if (data.error) {
+                        result.textContent = `Upload failed: ${data.error}`;
+                        console.error('Upload error:', data.error);
+                    } else {
+                        result.textContent = 'Upload failed. An unexpected error occurred.';
+                        console.error('Upload error:', data.error);
+                    } else {
+                        result.textContent = 'Upload failed. An unexpected error occurred.';
+                        console.error('Upload error:', data);
+                    }
                 })
                 .catch(error => {
-                    result.textContent = "Upload failed. Please try again.";
+                    result.textContent = "Network error during upload. Please try again.";
                     console.error('Upload error:', error);
                 });
             });
-    
+
             fileInput.addEventListener('change', function () {
                 if (fileInput.files.length > 0) {
                     fileText.textContent = fileInput.files[0].name;
@@ -397,7 +500,7 @@
                 }
             });
         }
-    </script>    
+    </script>
 
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </body>

@@ -19,6 +19,19 @@
             box-sizing: border-box;
         }
 
+        .glass {
+    background: rgba(255, 255, 255, 0.2); /* Semi-transparent white background */
+    border-radius: 10px; /* Optional: for rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow for depth */
+    backdrop-filter: blur(10px); /* The magic blur effect */
+    -webkit-backdrop-filter: blur(10px); /* For Safari */
+}
+
+/* You might need to adjust padding and other styles for the element */
+.glass-content {
+    padding: 20px;
+}
+
         /* --- Container Styles --- */
         .container {
             width: 100%;

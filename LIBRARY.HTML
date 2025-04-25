@@ -13,130 +13,163 @@
             margin: 0;
             padding: 0;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
+            flex-direction: column; /* Align sidebar and content vertically on smaller screens */
             min-height: 100vh;
             box-sizing: border-box;
+            font-size: 1rem;
+        }
+
+        /* Glass Effect Background (Optional - Uncomment if you want it) */
+        /*
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('your-background-image.jpg') center/cover no-repeat;
+            filter: blur(10px);
+            z-index: -2;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(13, 17, 23, 0.8);
+            z-index: -1;
+        }
+        */
+
+        .container {
+            display: flex;
+            width: 90%;
+            max-width: 1200px; /* Adjust for wider layout */
+            border-radius: 0.75em;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 2em; /* Add some space below the main content */
         }
 
         /* --- Sidebar Styles (Consistent with upload.html) --- */
         .sidebar {
-            background-color: #161b22;
+            background-color: rgba(22, 27, 34, 0.7); /* Glass effect sidebar */
             color: #c9d1d9;
-            padding: 20px;
-            border-radius: 10px;
-            margin-right: 20px;
-            margin-bottom: 20px;
+            padding: 1.5em;
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            width: 100%;
-            max-width: 300px;
+            width: 250px;
             box-sizing: border-box;
         }
 
         .sidebar-logo {
             display: flex;
             align-items: center;
-            margin-bottom: 30px;
+            margin-bottom: 2em;
             width: 100%;
         }
 
         .sidebar-logo img {
-            width: 30px;
-            height: 30px;
-            margin-right: 10px;
-            border-radius: 5px;
+            width: 2em;
+            height: 2em;
+            margin-right: 0.75em;
+            border-radius: 0.3em;
         }
 
         .sidebar-logo h2 {
             margin: 0;
-            font-size: 1.2em;
+            font-size: 1.3em;
             font-weight: bold;
             color: #58a6ff;
             word-break: break-word;
         }
 
         .main-navigation {
-            margin-bottom: 20px;
+            margin-bottom: 1.5em;
             width: 100%;
         }
 
         .main-navigation h4 {
             color: #a1b8d1;
-            font-size: 0.8em;
-            font-weight: normal;
             margin-top: 0;
-            margin-bottom: 10px;
+            margin-bottom: 0.75em;
+            font-size: 0.95em;
+            font-weight: normal;
             text-transform: uppercase;
+            letter-spacing: 0.03em;
         }
 
         .sidebar-link {
             display: flex;
             align-items: center;
-            color: #c9d1d9;
+            padding: 0.8em 1.2em;
             text-decoration: none;
-            padding: 10px 15px;
-            border-radius: 6px;
-            margin-bottom: 8px;
+            color: #d1d5db;
+            border-radius: 0.4em;
+            transition: background-color 0.2s ease-in-out;
+            margin-bottom: 0.3em;
             width: 100%;
             box-sizing: border-box;
-            transition: background-color 0.2s ease-in-out;
         }
 
         .sidebar-link:hover {
-            background-color: #21262d;
-            color: #58a6ff;
+            background-color: #4b5563;
+            color: #e2e8f0;
         }
 
         .sidebar-link.active {
-            background-color: #0d1117;
-            color: #58a6ff;
-            font-weight: bold;
+            background-color: #4299e1;
+            color: #f0f8ff;
+            font-weight: 600;
         }
 
-        .sidebar-link i {
-            margin-right: 10px;
-            font-size: 1.1em;
-        }
-
-        .account-section {
-            margin-top: auto;
-            width: 100%;
-            padding-top: 20px;
-            border-top: 1px solid #30363d;
-        }
-
-        .account-section h4 {
-            color: #a1b8d1;
-            font-size: 0.8em;
-            font-weight: normal;
-            margin-top: 0;
-            margin-bottom: 10px;
-            text-transform: uppercase;
+        .sidebar-link svg {
+            margin-right: 0.8em;
+            width: 1.3em;
+            height: 1.3em;
+            fill: currentColor;
         }
 
         /* --- Library Content Styles --- */
-        .main-content { /* Changed from library-content to main-content */
+        .main-content {
             flex-grow: 1;
-            padding: 20px;
-            background-color: #161b22;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            width: 95%;
-            max-width: 700px;
+            padding: 2em;
+            background-color: rgba(22, 27, 34, 0.4); /* Subtle glass effect */
+            backdrop-filter: blur(6px);
             box-sizing: border-box;
+            width: calc(100% - 250px); /* Adjust width based on sidebar */
+            display: flex;
+            flex-direction: column;
+            align-items: stretch; /* Make sections take full width */
         }
 
         h1 {
             color: #58a6ff;
             margin-top: 0;
-            margin-bottom: 20px;
+            margin-bottom: 1.5em;
             text-align: center;
+            font-size: 2em;
+        }
+
+        p {
+            color: #a1b8d1;
+            text-align: center;
+            margin-bottom: 2em;
+            font-size: 1.1em;
         }
 
         .library-section {
-            margin-bottom: 30px;
+            margin-bottom: 2em;
             width: 100%;
             box-sizing: border-box;
         }
@@ -144,39 +177,34 @@
         .library-section h2 {
             color: #58a6ff;
             border-bottom: 2px solid #30363d;
-            padding-bottom: 10px;
-            margin-bottom: 15px;
+            padding-bottom: 0.75em;
+            margin-bottom: 1em;
             text-transform: uppercase;
-            font-size: 1.5em;
+            font-size: 1.3em;
         }
 
         .library-item {
-            background-color: #1e2733;
-            padding: 15px;
-            border-radius: 6px;
-            margin-bottom: 10px;
+            background-color: rgba(30, 39, 51, 0.5); /* Glass effect for items */
+            padding: 1.2em;
+            border-radius: 0.5em;
+            margin-bottom: 0.75em;
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
-            justify-content: space-between;
+            gap: 0.5em;
             transition: background-color 0.2s ease-in-out;
             width: 100%;
             box-sizing: border-box;
         }
 
         .library-item:hover {
-            background-color: #28303c;
+            background-color: rgba(40, 48, 60, 0.5);
         }
 
         .library-item a {
             color: #c9d1d9;
             text-decoration: none;
-            margin-right: 0;
             font-weight: bold;
             font-size: 1.1em;
-            margin-bottom: 5px;
-            width: 100%;
-            box-sizing: border-box;
         }
 
         .library-item a:hover {
@@ -185,91 +213,117 @@
         }
 
         .library-item span {
-            font-size: 0.85em;
+            font-size: 0.9em;
             color: #a1b8d1;
+        }
+
+        #libraryList {
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         /* --- Responsive Media Queries --- */
         @media (max-width: 768px) {
+            body {
+                align-items: stretch; /* Make container full width */
+            }
+            .container {
+                flex-direction: column;
+                align-items: stretch;
+                width: 95%;
+            }
             .sidebar {
-                margin-right: 0;
-                margin-bottom: 20px;
                 width: 100%;
                 max-width: none;
+                margin-right: 0;
+                margin-bottom: 1.5em;
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             }
-
             .main-content {
-                padding-right: 0;
                 width: 100%;
-            }
-
-            .library-content {
-                width: 95%;
-                padding: 20px;
+                padding: 1.5em;
             }
         }
 
         @media (max-width: 480px) {
             .sidebar {
-                padding: 15px;
+                padding: 1em;
             }
-
             .sidebar-logo {
                 flex-direction: column;
                 text-align: center;
+                margin-bottom: 1em;
             }
-
             .sidebar-logo img {
                 margin-right: 0;
-                margin-bottom: 10px;
+                margin-bottom: 0.5em;
             }
-
             .main-navigation {
-                margin-bottom: 10px;
+                margin-bottom: 1em;
             }
-
             .sidebar-link {
-                padding: 10px;
+                padding: 0.7em;
+                font-size: 0.95em;
             }
-
+            h1 {
+                font-size: 1.8em;
+                margin-bottom: 1em;
+            }
+            p {
+                font-size: 1em;
+                margin-bottom: 1.5em;
+            }
+            .library-section h2 {
+                font-size: 1.2em;
+                margin-bottom: 0.8em;
+                padding-bottom: 0.6em;
+            }
             .library-item {
-                flex-direction: column;
-                align-items: flex-start;
+                padding: 1em;
+                gap: 0.4em;
             }
-
             .library-item a {
-                margin-bottom: 5px;
+                font-size: 1em;
+            }
+            .library-item span {
+                font-size: 0.85em;
             }
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <div class="sidebar">
-        <div class="sidebar-logo">
-            <img src="Info_Tech_Logo_053325.png" alt="Logo">
-            <h2>DEPARTMENTAL E-Library</h2>
-        </div>
-        <div class="main-navigation">
-            <h4>Main Navigation</h4>
-            <a href="god.html" class="sidebar-link"><i class="fas fa-home"></i> Overview</a>
-            <a href="upload.html" class="sidebar-link"><i class="fas fa-upload"></i> Upload</a>
-            <a href="library.html" class="sidebar-link active"><i class="fas fa-book"></i> Library</a>
-            <a href="feedback.html" class="sidebar-link"><i class="fas fa-comment-dots"></i> Feedback</a>
-        </div>
-        <div class="account-section">
-            <h4>Account</h4>
-            <a href="profile.html" class="sidebar-link"><i class="fas fa-user"></i> Profile</a>
-            <a href="LOGOUT.HTML" class="sidebar-link"><i class="fas fa-sign-out-alt"></i> Logout</a>
-        </div>
-    </div>
-
-    <div class="main-content">
-        <h1>Library</h1>
-        <p>Browse all uploaded materials alphabetically.</p>
-
-        <div id="libraryList">
+    <div class="container">
+        <div class="sidebar">
+            <div class="sidebar-logo">
+                <img src="Info_Tech_Logo_053325.png" alt="Logo">
+                <h2>E-Library</h2>
             </div>
+            <div class="main-navigation">
+                <h4>Main Navigation</h4>
+                <a href="god.html" class="sidebar-link"><i class="fas fa-home"></i> Overview</a>
+                <a href="upload.html" class="sidebar-link"><i class="fas fa-upload"></i> Upload</a>
+                <a href="library.html" class="sidebar-link active"><i class="fas fa-book"></i> Library</a>
+                <a href="feedback.html" class="sidebar-link"><i class="fas fa-comment-dots"></i> Feedback</a>
+            </div>
+            <div class="account-section">
+                <h4>Account</h4>
+                <a href="profile.html" class="sidebar-link"><i class="fas fa-user"></i> Profile</a>
+                <a href="LOGOUT.HTML" class="sidebar-link"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <h1>Library</h1>
+            <p>Browse all uploaded materials alphabetically.</p>
+
+            <div id="libraryList">
+                </div>
+        </div>
     </div>
 
     <script>
@@ -308,10 +362,8 @@
                         `;
                         section.appendChild(item);
                     });
-
                     container.appendChild(section);
                 }
-
 
             } catch (err) {
                 container.innerHTML = '<p style="text-align: center; color: red;">⚠️ Failed to load library.</p>';
@@ -326,23 +378,6 @@
                 link.classList.add('active');
             }
         });
-  // Fetch and display the list of files with download links
-  fetch('/files')
-    .then(response => response.json())
-    .then(files => {
-      const fileList = document.getElementById('file-list');
-      files.forEach(file => {
-        const li = document.createElement('li');
-        const a = document.createElement('a');
-        a.href = `https://storage.googleapis.com/informationtechelibrary.appspot.com
-/${file}`;
-        a.textContent = file;
-        a.target = "_blank"; // Opens in new tab
-        li.appendChild(a);
-        fileList.appendChild(li);
-      });
-    });
-    
     </script>
 </body>
 </html>

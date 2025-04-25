@@ -87,6 +87,7 @@
     "statuses": "^2.0.1",
     "streamsearch": "^1.1.0",
     "string_decoder": "^1.1.1",
+    "svelte": "^5.28.2",
     "toidentifier": "^1.0.1",
     "type-is": "^2.0.1",
     "typedarray": "^0.0.6",

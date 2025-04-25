@@ -1,163 +1,270 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IT Archive Login</title>
-  <style>
-    /* General Reset */
-    * {
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IT Archive Login</title>
+    <style>
+        /* General Reset */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #001f4d;
-      color: #add8e6;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-    }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #001f4d; /* Dark blue background */
+            color: #add8e6; /* Light blue text */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden; /* Prevent scroll during loading */
+        }
 
-    .container {
-      width: 90%;
-      max-width: 400px;
-      background: #001a40;
-      padding: 30px 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    }
+        /* Glass Effect Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('your-background-image.jpg') center/cover no-repeat; /* Replace with your image */
+            filter: blur(10px);
+            z-index: -2;
+        }
 
-    .header {
-      text-align: center;
-      margin-bottom: 20px;
-    }
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 31, 77, 0.8); /* Dark blue overlay with slight transparency */
+            z-index: -1;
+        }
 
-    .logo img {
-      max-width: 100px;
-      border-radius: 50%;
-      margin-bottom: 15px;
-    }
+        .container {
+            width: 90%;
+            max-width: 400px;
+            background: rgba(0, 26, 64, 0.6); /* Darker blue glass effect */
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle white border for glass */
+            backdrop-filter: blur(8px); /* Apply glass blur */
+        }
 
-    h1 {
-      font-size: 1.4rem;
-      margin: 0 0 5px;
-    }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
 
-    p {
-      margin: 0;
-      font-size: 0.9rem;
-      color: #cce6ff;
-    }
+        .logo img {
+            max-width: 120px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
 
-    form {
-      margin-top: 25px;
-      display: flex;
-      flex-direction: column;
-    }
+        h1 {
+            font-size: 1.6rem;
+            margin: 0 0 8px;
+            color: #66aaff; /* Brighter light blue for emphasis */
+        }
 
-    label {
-      font-weight: bold;
-      margin-bottom: 5px;
-    }
+        p {
+            margin: 0;
+            font-size: 1rem;
+            color: #cce6ff;
+            opacity: 0.8;
+        }
 
-    input[type="email"] {
-      padding: 12px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      margin-bottom: 12px;
-      font-size: 1rem;
-    }
+        form {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+        }
 
-    .error {
-      color: red;
-      font-size: 0.85rem;
-      margin-bottom: 10px;
-    }
+        label {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #bbdefb;
+            opacity: 0.9;
+        }
 
-    button[type="submit"] {
-      background-color: #004080;
-      color: #add8e6;
-      padding: 12px;
-      border: none;
-      border-radius: 5px;
-      font-weight: bold;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background-color 0.2s ease;
-    }
+        input[type="email"] {
+            padding: 14px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 16px;
+            font-size: 1.1rem;
+            background-color: rgba(255, 255, 255, 0.05); /* Slightly transparent input */
+            color: #e1f5fe;
+        }
 
-    button:hover {
-      background-color: #003366;
-    }
+        input[type="email"]::placeholder {
+            color: #80bfff;
+            opacity: 0.7;
+        }
 
-    .footer {
-      text-align: center;
-      margin-top: 20px;
-      font-size: 0.85rem;
-      color: #add8e6;
-    }
+        .error {
+            color: #ff6666;
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+        }
 
-    @media screen and (max-width: 500px) {
-      h1 {
-        font-size: 1.2rem;
-      }
+        button[type="submit"] {
+            background-color: #336699; /* Slightly brighter blue button */
+            color: #e0f7fa;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
 
-      input, button {
-        font-size: 0.95rem;
-      }
+        button[type="submit"]:hover {
+            background-color: #24476d;
+            transform: translateY(-2px);
+        }
 
-      .logo img {
-        max-width: 80px;
-      }
-    }
-  </style>
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #add8e6;
+            opacity: 0.7;
+        }
+
+        /* Loading Spinner */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .loading-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #66aaff;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media screen and (max-width: 500px) {
+            h1 {
+                font-size: 1.4rem;
+            }
+
+            p {
+                font-size: 0.9rem;
+            }
+
+            input, button {
+                font-size: 1rem;
+            }
+
+            .logo img {
+                max-width: 100px;
+            }
+
+            .container {
+                padding: 30px 20px;
+                border-radius: 8px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <div class="logo">
-        <img src="Info_Tech_Logo_053325.png" alt="Logo" />
-      </div>
-      <h1>Information Technology Archive</h1>
-      <p>Log in using your university email</p>
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+    </div>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <img src="Info_Tech_Logo_053325.png" alt="Logo" />
+            </div>
+            <h1>Information Technology Archive</h1>
+            <p>Log in using your university email</p>
+        </div>
+
+        <form onsubmit="handleLogin(event)">
+            <label for="email">Email Address</label>
+            <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter your @uniport.edu.ng email"
+                required
+            />
+            <div id="error-message" class="error"></div>
+            <button type="submit">Log in</button>
+        </form>
+
+        <div class="footer">
+            <p>© 2025 Information Technology Archive. All rights reserved.</p>
+        </div>
     </div>
 
-    <form onsubmit="handleLogin(event)">
-      <label for="email">Email Address</label>
-      <input
-        type="email"
-        id="email"
-        name="email"
-        placeholder="Enter your @uniport.edu.ng email"
-        required
-      />
-      <div id="error-message" class="error"></div>
-      <button type="submit">Log in</button>
-    </form>
+    <script>
+        const loadingOverlay = document.getElementById('loadingOverlay');
 
-    <div class="footer">
-      <p>© 2025 Information Technology Archive. All rights reserved.</p>
-    </div>
-  </div>
+        function showLoading() {
+            loadingOverlay.classList.add('active');
+        }
 
-  <script>
-    function handleLogin(event) {
-      event.preventDefault();
-      const email = document.getElementById("email").value;
-      const error = document.getElementById("error-message");
+        function hideLoading() {
+            loadingOverlay.classList.remove('active');
+        }
 
-      if (!email.endsWith("@uniport.edu.ng")) {
-        error.textContent =
-          "Please use a valid @uniport.edu.ng email address.";
-      } else {
-        error.textContent = "";
-        window.location.href = "god.html";
-      }
-    }
-  </script>
+        function handleLogin(event) {
+            event.preventDefault();
+            const email = document.getElementById("email").value;
+            const error = document.getElementById("error-message");
+
+            if (!email.endsWith("@uniport.edu.ng")) {
+                error.textContent =
+                    "Please use a valid @uniport.edu.ng email address.";
+            } else {
+                error.textContent = "";
+                showLoading();
+                // Simulate a delay for page transition
+                setTimeout(() => {
+                    window.location.href = "god.html";
+                }, 1000); // Adjust the delay as needed
+            }
+        }
+
+        // Initially hide loading overlay
+        hideLoading();
+    </script>
 </body>
 </html>
