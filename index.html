@@ -4,8 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>IT Archive Login</title>
+    <meta property="og:title" content="IT Archive Login">
+    <meta property="og:description" content="Log in to the Information Technology Archive with your university email.">
+    <meta property="og:image" content="Info_Tech_Logo_053325.png">
+    <meta property="og:url" content="index.html">
+    <meta property="og:type" content="THE LIBRARY OF INFORMATION TECHNOLOGY ">
     <style>
-        /* General Reset */
+        /* --- General Reset & Base Styles --- */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -14,28 +19,17 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #001f4d; /* Dark blue background */
-            color: #add8e6; /* Light blue text */
+            background-color: #001f4d;
+            color: #add8e6;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            overflow: hidden; /* Prevent scroll during loading */
+            overflow: hidden;
         }
 
-        /* Glass Effect Background */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('your-background-image.jpg') center/cover no-repeat; /* Replace with your image */
-            filter: blur(10px);
-            z-index: -2;
-        }
-
+        /* --- Background & Overlay --- */
+        body::before,
         body::after {
             content: '';
             position: fixed;
@@ -43,19 +37,30 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 31, 77, 0.8); /* Dark blue overlay with slight transparency */
-            z-index: -1;
+            z-index: -2;
         }
 
+        body::before {
+            /* background: url('your-background-image.jpg') center/cover no-repeat; */ /* Replace with your image */
+            filter: blur(10px);
+        }
+
+        body::after {
+            background-color: rgba(0, 31, 77, 0.8);
+        }
+
+        /* --- Container & Form Styles --- */
         .container {
             width: 90%;
             max-width: 400px;
-            background: rgba(0, 26, 64, 0.6); /* Darker blue glass effect */
+            background: rgba(0, 26, 64, 0.6);
             padding: 40px 30px;
             border-radius: 12px;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle white border for glass */
-            backdrop-filter: blur(8px); /* Apply glass blur */
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+            position: relative; /* Allows for absolutely positioned elements within */
+            z-index: 1;
         }
 
         .header {
@@ -73,14 +78,14 @@
         h1 {
             font-size: 1.6rem;
             margin: 0 0 8px;
-            color: #66aaff; /* Brighter light blue for emphasis */
+            color: #66aaff;
         }
 
         p {
-            margin: 0;
             font-size: 1rem;
             color: #cce6ff;
             opacity: 0.8;
+            margin-bottom: 0;
         }
 
         form {
@@ -94,6 +99,7 @@
             margin-bottom: 8px;
             color: #bbdefb;
             opacity: 0.9;
+            display: block;
         }
 
         input[type="email"] {
@@ -102,8 +108,9 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
             margin-bottom: 16px;
             font-size: 1.1rem;
-            background-color: rgba(255, 255, 255, 0.05); /* Slightly transparent input */
+            background-color: rgba(255, 255, 255, 0.05);
             color: #e1f5fe;
+            width: 100%;
         }
 
         input[type="email"]::placeholder {
@@ -111,14 +118,14 @@
             opacity: 0.7;
         }
 
-        .error {
+        .error-message {
             color: #ff6666;
             font-size: 0.9rem;
             margin-bottom: 12px;
         }
 
         button[type="submit"] {
-            background-color: #336699; /* Slightly brighter blue button */
+            background-color: #336699;
             color: #e0f7fa;
             padding: 14px;
             border: none;
@@ -128,6 +135,7 @@
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.2s ease;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            width: 100%;
         }
 
         button[type="submit"]:hover {
@@ -143,13 +151,10 @@
             opacity: 0.7;
         }
 
-        /* Loading Spinner */
+        /* --- Loading Spinner Styles --- */
         .loading-overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
             background-color: rgba(0, 0, 0, 0.6);
             display: flex;
             justify-content: center;
@@ -175,10 +180,12 @@
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            to {
+                transform: rotate(360deg);
+            }
         }
 
+        /* --- Responsive Styles --- */
         @media screen and (max-width: 500px) {
             h1 {
                 font-size: 1.4rem;
@@ -188,7 +195,8 @@
                 font-size: 0.9rem;
             }
 
-            input, button {
+            input[type="email"],
+            button[type="submit"] {
                 font-size: 1rem;
             }
 
@@ -216,7 +224,7 @@
             <p>Log in using your university email</p>
         </div>
 
-        <form onsubmit="handleLogin(event)">
+        <form id="loginForm">
             <label for="email">Email Address</label>
             <input
                 type="email"
@@ -225,7 +233,7 @@
                 placeholder="Enter your @uniport.edu.ng email"
                 required
             />
-            <div id="error-message" class="error"></div>
+            <div id="error-message" class="error-message"></div>
             <button type="submit">Log in</button>
         </form>
 
@@ -236,6 +244,8 @@
 
     <script>
         const loadingOverlay = document.getElementById('loadingOverlay');
+        const loginForm = document.getElementById('loginForm');
+        const errorMessage = document.getElementById('error-message');
 
         function showLoading() {
             loadingOverlay.classList.add('active');
@@ -248,24 +258,27 @@
         function handleLogin(event) {
             event.preventDefault();
             const email = document.getElementById("email").value;
-            const error = document.getElementById("error-message");
 
             if (!email.endsWith("@uniport.edu.ng")) {
-                error.textContent =
-                    "Please use a valid @uniport.edu.ng email address.";
-            } else {
-                error.textContent = "";
-                showLoading();
-                // Simulate a delay for page transition
-                setTimeout(() => {
-                    window.location.href = "god.html";
-                }, 1000); // Adjust the delay as needed
+                errorMessage.textContent = "Please use a valid @uniport.edu.ng email address.";
+                return; // Stop form submission
             }
+
+            errorMessage.textContent = ""; // Clear any previous error message
+            showLoading();
+
+            // Simulate a delay for page transition.  Important for UX.
+            setTimeout(() => {
+                // In a real application, you would send the data to a server here.
+                // For this example, we are just simulating a successful login.
+                window.location.href = "god.html"; //  Hardcoded navigation for demonstration
+                hideLoading(); // Ensure loading overlay is hidden before navigating.
+            }, 1000);
         }
 
-        // Initially hide loading overlay
+        // Initial setup: hide loading overlay on page load
         hideLoading();
+        loginForm.addEventListener('submit', handleLogin); // Attach event listener to the form
     </script>
-     <script src="enhanced-dashboard.js"></script>
 </body>
 </html>
