@@ -13,7 +13,7 @@
             margin: 0;
             padding: 0;
             display: flex;
-            flex-direction: column; /* Stack sidebar and content by default */
+            flex-direction: column;
             align-items: center;
             min-height: 100vh;
             box-sizing: border-box;
@@ -22,8 +22,8 @@
 
         .container {
             display: flex;
-            flex-direction: column; /* Stack items on smaller screens */
-            width: 95%; /* Take up more width on smaller screens */
+            flex-direction: column;
+            width: 95%;
             max-width: 1200px;
             border-radius: 0.75em;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
@@ -31,26 +31,26 @@
             backdrop-filter: blur(8px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             margin-bottom: 2em;
-            margin-top: 1em; /* Add some top margin for better spacing on smaller screens */
+            margin-top: 1em;
         }
 
         /* --- Sidebar Styles --- */
         .sidebar {
-            background-color: rgba(22, 27, 34, 0.7); /* Glass effect sidebar */
+            background-color: rgba(22, 27, 34, 0.7);
             color: #c9d1d9;
             padding: 1.5em;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Bottom border for separation on smaller screens */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            width: 100%; /* Full width on smaller screens */
+            width: 100%;
             box-sizing: border-box;
         }
 
         .sidebar-logo {
             display: flex;
             align-items: center;
-            margin-bottom: 1.5em; /* Reduced margin on smaller screens */
+            margin-bottom: 1.5em;
             width: 100%;
         }
 
@@ -63,22 +63,22 @@
 
         .sidebar-logo h2 {
             margin: 0;
-            font-size: 1.2em; /* Slightly smaller font on smaller screens */
+            font-size: 1.2em;
             font-weight: bold;
             color: #58a6ff;
             word-break: break-word;
         }
 
         .main-navigation {
-            margin-bottom: 1em; /* Reduced margin on smaller screens */
+            margin-bottom: 1em;
             width: 100%;
         }
 
         .main-navigation h4 {
             color: #a1b8d1;
             margin-top: 0;
-            margin-bottom: 0.5em; /* Reduced margin on smaller screens */
-            font-size: 0.9em; /* Slightly smaller font on smaller screens */
+            margin-bottom: 0.5em;
+            font-size: 0.9em;
             font-weight: normal;
             text-transform: uppercase;
             letter-spacing: 0.03em;
@@ -87,15 +87,15 @@
         .sidebar-link {
             display: flex;
             align-items: center;
-            padding: 0.7em 1em; /* Reduced padding on smaller screens */
+            padding: 0.7em 1em;
             text-decoration: none;
             color: #d1d5db;
             border-radius: 0.4em;
             transition: background-color 0.2s ease-in-out;
-            margin-bottom: 0.2em; /* Reduced margin on smaller screens */
+            margin-bottom: 0.2em;
             width: 100%;
             box-sizing: border-box;
-            font-size: 0.95em; /* Slightly smaller font on smaller screens */
+            font-size: 0.95em;
         }
 
         .sidebar-link:hover {
@@ -110,15 +110,15 @@
         }
 
         .sidebar-link svg {
-            margin-right: 0.6em; /* Reduced margin on smaller screens */
-            width: 1.1em; /* Reduced size on smaller screens */
-            height: 1.1em; /* Reduced size on smaller screens */
+            margin-right: 0.6em;
+            width: 1.1em;
+            height: 1.1em;
             fill: currentColor;
         }
 
         .account-section h4 {
             color: #a1b8d1;
-            margin-top: 1em; /* Add some top margin to separate from main navigation */
+            margin-top: 1em;
             margin-bottom: 0.5em;
             font-size: 0.9em;
             font-weight: normal;
@@ -129,33 +129,33 @@
         /* --- Library Content Styles --- */
         .main-content {
             flex-grow: 1;
-            padding: 1.5em; /* Reduced padding on smaller screens */
-            background-color: rgba(22, 27, 34, 0.4); /* Subtle glass effect */
+            padding: 1.5em;
+            background-color: rgba(22, 27, 34, 0.4);
             backdrop-filter: blur(6px);
             box-sizing: border-box;
-            width: 100%; /* Full width on smaller screens */
+            width: 100%;
             display: flex;
             flex-direction: column;
-            align-items: stretch; /* Make sections take full width */
+            align-items: stretch;
         }
 
         h1 {
             color: #58a6ff;
             margin-top: 0;
-            margin-bottom: 1em; /* Reduced margin on smaller screens */
+            margin-bottom: 1em;
             text-align: center;
-            font-size: 1.8em; /* Slightly smaller font on smaller screens */
+            font-size: 1.8em;
         }
 
         p {
             color: #a1b8d1;
             text-align: center;
-            margin-bottom: 1.5em; /* Reduced margin on smaller screens */
-            font-size: 1em; /* Slightly smaller font on smaller screens */
+            margin-bottom: 1.5em;
+            font-size: 1em;
         }
 
         .library-section {
-            margin-bottom: 1.5em; /* Reduced margin on smaller screens */
+            margin-bottom: 1.5em;
             width: 100%;
             box-sizing: border-box;
         }
@@ -163,24 +163,24 @@
         .library-section h2 {
             color: #58a6ff;
             border-bottom: 2px solid #30363d;
-            padding-bottom: 0.6em; /* Reduced padding on smaller screens */
-            margin-bottom: 0.8em; /* Reduced margin on smaller screens */
+            padding-bottom: 0.6em;
+            margin-bottom: 0.8em;
             text-transform: uppercase;
-            font-size: 1.2em; /* Slightly smaller font on smaller screens */
+            font-size: 1.2em;
         }
 
         .library-item {
-            background-color: rgba(30, 39, 51, 0.5); /* Glass effect for items */
-            padding: 1em; /* Reduced padding on smaller screens */
+            background-color: rgba(30, 39, 51, 0.5);
+            padding: 1em;
             border-radius: 0.5em;
-            margin-bottom: 0.6em; /* Reduced margin on smaller screens */
+            margin-bottom: 0.6em;
             display: flex;
             flex-direction: column;
-            gap: 0.4em; /* Reduced gap on smaller screens */
+            gap: 0.4em;
             transition: background-color 0.2s ease-in-out;
             width: 100%;
             box-sizing: border-box;
-            font-size: 0.95em; /* Slightly smaller font on smaller screens */
+            font-size: 0.95em;
         }
 
         .library-item:hover {
@@ -191,7 +191,7 @@
             color: #c9d1d9;
             text-decoration: none;
             font-weight: bold;
-            font-size: 1em; /* Slightly smaller font on smaller screens */
+            font-size: 1em;
         }
 
         .library-item a:hover {
@@ -200,24 +200,24 @@
         }
 
         .library-item span {
-            font-size: 0.85em; /* Slightly smaller font on smaller screens */
+            font-size: 0.85em;
             color: #a1b8d1;
         }
 
         #libraryList {
             display: flex;
             flex-direction: column;
-            gap: 0.8em; /* Reduced gap on smaller screens */
+            gap: 0.8em;
             width: 100%;
             box-sizing: border-box;
         }
 
-        /* --- Media Query for larger screens (make sidebar fixed and content beside it) --- */
+        /* --- Media Query for larger screens --- */
         @media (min-width: 769px) {
             body {
                 flex-direction: row;
                 align-items: stretch;
-                justify-content: flex-start; /* Align sidebar to the left */
+                justify-content: flex-start;
             }
             .container {
                 flex-direction: row;
@@ -230,10 +230,10 @@
                 border-bottom: none;
                 margin-bottom: 0;
                 padding: 2em 1.5em;
-                position: sticky; /* Keep sidebar in view on scroll (if needed) */
+                position: sticky;
                 top: 0;
-                height: calc(100vh - 4em); /* Adjust height based on body margins */
-                overflow-y: auto; /* Allow scrolling in sidebar if content overflows */
+                height: calc(100vh - 4em);
+                overflow-y: auto;
             }
             .main-content {
                 width: calc(100% - 250px);
@@ -295,7 +295,7 @@
             }
         }
 
-        /* --- Further adjustments for very small screens (optional) --- */
+        /* --- Further adjustments for very small screens --- */
         @media (max-width: 360px) {
             .sidebar-logo h2 {
                 font-size: 1.1em;
@@ -348,64 +348,67 @@
             <h1>Library</h1>
             <p>Browse all uploaded materials alphabetically.</p>
 
-            <div id="libraryList">
-            </div>
+            <div id="libraryList" class="library-section">
+                 </div>
         </div>
     </div>
+<script>
+const { Octokit } = require("@octokit/rest");
 
-    <script>
-        async function loadLibrary() {
-            const container = document.getElementById('libraryList');
-            try {
-                const res = await fetch('http://localhost:3000/library');
-                const data = await res.json();
-                if (data.length === 0) {
-                    container.innerHTML = '<p style="text-align: center; color: #a1b8d1; font-style: italic;">No documents uploaded yet.</p>';
-                    return;
-                }
+// Replace with your GitHub personal access token
+const githubToken = process.env.GITHUB_TOKEN_UPDATE;
+// Replace with your GitHub username, repository name, and target branch
+const githubUsername = 'Z10N-exe';  // Changed to a variable.
+const githubRepo = 'INFOTECH-ELIBRARY';      // Changed to a variable.
+const targetBranch = 'uploads';    // Changed to a variable.
+const filesDirectoryInRepo = 'uploads/'; // Should match the backend, added trailing slash
 
-                const groupedDocs = {};
-                data.forEach(doc => {
-                    const firstLetter = doc.filename.charAt(0).toUpperCase();
-                    if (!groupedDocs[firstLetter]) {
-                        groupedDocs[firstLetter] = [];
-                    }
-                    groupedDocs[firstLetter].push(doc);
-                });
+async function displayLibraryFiles() {
+    const octokit = new Octokit({ auth: githubToken });
+    const libraryList = document.getElementById('libraryList');
+    libraryList.innerHTML = 'Loading files...'; // Initial loading message
 
-                container.innerHTML = ''; // Clear initial content
-
-                for (const letter in groupedDocs) {
-                    const section = document.createElement('div');
-                    section.className = 'library-section';
-                    section.innerHTML = `<h2>${letter}</h2>`;
-
-                    groupedDocs[letter].forEach(doc => {
-                        const item = document.createElement('div');
-                        item.className = 'library-item';
-                        item.innerHTML = `
-                            <a href="${doc.url}" target="_blank">${doc.filename}</a>
-                            <span>Uploaded: ${new Date(doc.created_at).toLocaleString()}</span>
-                        `;
-                        section.appendChild(item);
-                    });
-                    container.appendChild(section);
-                }
-
-            } catch (err) {
-                container.innerHTML = '<p style="text-align: center; color: red;">⚠️ Failed to load library.</p>';
-            }
-        }
-
-        loadLibrary();
-
-        const sidebarLinks = document.querySelectorAll('.sidebar-link');
-        sidebarLinks.forEach(link => {
-            if (link.textContent.trim() === 'Library') {
-                link.classList.add('active');
-            }
+    try {
+        // Get the contents of the 'uploads' directory
+        const contentsResponse = await octokit.repos.getContent({
+            owner: githubUsername,
+            repo: githubRepo,
+            path: filesDirectoryInRepo,
+            ref: targetBranch,
         });
-    </script>
-    <script src="enhanced-dashboard.js"></script>
+
+        if (Array.isArray(contentsResponse.data)) {
+            const fileNames = contentsResponse.data
+                .filter(item => item.type === 'file')
+                .map(item => item.name)
+                .sort((a, b) => a.localeCompare(b)); // Sort files
+
+            if (fileNames.length === 0) {
+                libraryList.innerHTML = '<p>No files have been uploaded yet.</p>';
+                return;
+            }
+
+            libraryList.innerHTML = ''; // Clear loading message
+            fileNames.forEach(fileName => {
+                const listItem = document.createElement('div');
+                listItem.className = 'library-item';
+                // Construct the download URL.
+                const fileUrl = `${filesDirectoryInRepo}${encodeURIComponent(fileName)}`;
+                listItem.innerHTML = `<a href="${fileUrl}" download="${fileName}">${fileName}</a>`; // Added download attribute
+                libraryList.appendChild(listItem);
+            });
+        } else {
+            libraryList.innerHTML = '<p>Error: Could not retrieve file list.</p>'; // More user-friendly error
+            console.error('Contents response was not an array:', contentsResponse); // Keep for debugging
+        }
+    } catch (error) {
+        libraryList.innerHTML = '<p>Error: Failed to fetch files from GitHub.</p>';
+        console.error('Error fetching files:', error);
+    }
+}
+
+// Call the function to display the files when the page loads
+displayLibraryFiles();
+</script>
 </body>
 </html>
