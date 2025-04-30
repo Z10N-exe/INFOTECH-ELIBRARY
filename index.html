@@ -1,14 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IT Archive Login</title>
-    <meta property="og:title" content="IT Archive Login">
-    <meta property="og:description" content="Log in to the Information Technology Archive with your university email.">
-    <meta property="og:image" content="Info_Tech_Logo_053325.png">
-    <meta property="og:url" content="index.html">
-    <meta property="og:type" content="THE LIBRARY OF INFORMATION TECHNOLOGY ">
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Log in to IT Archive">
+    <meta property="og:description" content="Access the Information Technology Archive with your @uniport.edu.ng email.">
+    <meta property="og:image" content="/images/preview.png">
+    <meta property="og:url" content="https://yourdomain.com/index.html">
+    <meta property="og:type" content="website">
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Log in to IT Archive">
+    <meta name="twitter:description" content="Access the Information Technology Archive with your @uniport.edu.ng email.">
+    <meta name="twitter:image" content="/images/preview.png">
+    <!-- Favicon -->
+    <link rel="icon" href="/images/preview.png" type="image/png">
     <style>
         /* --- General Reset & Base Styles --- */
         * {
@@ -41,7 +49,7 @@
         }
 
         body::before {
-            /* background: url('your-background-image.jpg') center/cover no-repeat; */ /* Replace with your image */
+            /* background: url('your-background-image.jpg') center/cover no-repeat; */
             filter: blur(10px);
         }
 
@@ -59,7 +67,7 @@
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
             border: 1px solid rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(8px);
-            position: relative; /* Allows for absolutely positioned elements within */
+            position: relative;
             z-index: 1;
         }
 
@@ -73,6 +81,8 @@
             border-radius: 50%;
             margin-bottom: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border: 4px solid #ffffff; /* White circular border */
+            padding: 4px; /* Space between logo and border */
         }
 
         h1 {
@@ -202,6 +212,8 @@
 
             .logo img {
                 max-width: 100px;
+                border: 3px solid #ffffff;
+                padding: 3px;
             }
 
             .container {
@@ -218,7 +230,7 @@
     <div class="container">
         <div class="header">
             <div class="logo">
-                <img src="Info_Tech_Logo_053325.png" alt="Logo" />
+                <img src="Info_Tech_Logo_053325.png" alt="IT Archive Logo">
             </div>
             <h1>Information Technology Archive</h1>
             <p>Log in using your university email</p>
@@ -232,7 +244,7 @@
                 name="email"
                 placeholder="Enter your @uniport.edu.ng email"
                 required
-            />
+            >
             <div id="error-message" class="error-message"></div>
             <button type="submit">Log in</button>
         </form>
@@ -245,7 +257,6 @@
     <script>
         const loadingOverlay = document.getElementById('loadingOverlay');
         const loginForm = document.getElementById('loginForm');
-        const errorMessage = document.getElementById('error-message');
 
         function showLoading() {
             loadingOverlay.classList.add('active');
@@ -257,28 +268,18 @@
 
         function handleLogin(event) {
             event.preventDefault();
-            const email = document.getElementById("email").value;
-
-            if (!email.endsWith("@uniport.edu.ng")) {
-                errorMessage.textContent = "Please use a valid @uniport.edu.ng email address.";
-                return; // Stop form submission
-            }
-
-            errorMessage.textContent = ""; // Clear any previous error message
             showLoading();
 
-            // Simulate a delay for page transition.  Important for UX.
+            // Simulate a short delay for UX, then redirect
             setTimeout(() => {
-                // In a real application, you would send the data to a server here.
-                // For this example, we are just simulating a successful login.
-                window.location.href = "god.html"; //  Hardcoded navigation for demonstration
-                hideLoading(); // Ensure loading overlay is hidden before navigating.
-            }, 1000);
+                window.location.href = 'god.html';
+                hideLoading();
+            }, 1000); // 1-second delay to show spinner
         }
 
-        // Initial setup: hide loading overlay on page load
+        // Initial setup
         hideLoading();
-        loginForm.addEventListener('submit', handleLogin); // Attach event listener to the form
+        loginForm.addEventListener('submit', handleLogin);
     </script>
     <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
 </body>

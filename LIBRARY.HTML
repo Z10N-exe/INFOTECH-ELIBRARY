@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Library</title>
+    <title>INFORMATION TECHNOOGY DEPARTMENT Library</title>
     <style>
         /* --- General Styles --- */
         body {
@@ -154,63 +154,110 @@
             font-size: 1em;
         }
 
-        .library-section {
-            margin-bottom: 1.5em;
-            width: 100%;
-            box-sizing: border-box;
-        }
+        /* --- File List Enhancements --- */
+.library-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8em;
+    width: 100%;
+    box-sizing: border-box;
+}
 
-        .library-section h2 {
-            color: #58a6ff;
-            border-bottom: 2px solid #30363d;
-            padding-bottom: 0.6em;
-            margin-bottom: 0.8em;
-            text-transform: uppercase;
-            font-size: 1.2em;
-        }
+.library-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1em;
+    background-color: rgba(30, 39, 51, 0.5);
+    border-radius: 0.5em;
+    margin-bottom: 0;
+    transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
 
-        .library-item {
-            background-color: rgba(30, 39, 51, 0.5);
-            padding: 1em;
-            border-radius: 0.5em;
-            margin-bottom: 0.6em;
-            display: flex;
-            flex-direction: column;
-            gap: 0.4em;
-            transition: background-color 0.2s ease-in-out;
-            width: 100%;
-            box-sizing: border-box;
-            font-size: 0.95em;
-        }
+.library-item:hover {
+    background-color: rgba(40, 48, 60, 0.7);
+    transform: translateY(-2px);
+}
 
-        .library-item:hover {
-            background-color: rgba(40, 48, 60, 0.5);
-        }
+.file-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3em;
+    flex: 1;
+}
 
-        .library-item a {
-            color: #c9d1d9;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1em;
-        }
+.library-item a {
+    color: #c9d1d9;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1em;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
 
-        .library-item a:hover {
-            text-decoration: underline;
-            color: #85c8f4;
-        }
+.library-item a:hover {
+    color: #85c8f4;
+}
 
-        .library-item span {
-            font-size: 0.85em;
-            color: #a1b8d1;
-        }
+.library-item i {
+    font-size: 1.2em;
+    color: #58a6ff;
+}
 
-        #libraryList {
-            display: flex;
-            flex-direction: column;
-            gap: 0.8em;
-            width: 100%;
-            box-sizing: border-box;
-        }
+.library-item span {
+    font-size: 0.85em;
+    color: #a1b8d1;
+}
+
+.download-btn {
+    padding: 0.5em 1em;
+    background-color: #4299e1;
+    border-radius: 0.3em;
+    color: #f0f8ff;
+    text-align: center;
+    transition: background-color 0.2s ease-in-out;
+    font-size: 0.9em;
+}
+
+.download-btn:hover {
+    background-color: #3182ce;
+    color: #f0f8ff;
+    text-decoration: none;
+}
+
+.download-btn i {
+    font-size: 1em;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    .library-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8em;
+    }
+    .download-btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (min-width: 769px) {
+    .library-item {
+        padding: 1.2em;
+    }
+    .library-item a {
+        font-size: 1.1em;
+    }
+    .library-item span {
+        font-size: 0.9em;
+    }
+    .download-btn {
+        padding: 0.6em 1.2em;
+    }
+}
 
         /* --- Media Query for larger screens --- */
         @media (min-width: 769px) {
@@ -333,7 +380,6 @@
             <div class="main-navigation">
                 <h4>Main Navigation</h4>
                 <a href="god.html" class="sidebar-link"><i class="fas fa-home"></i> Overview</a>
-                <a href="UPLOAD.html" class="sidebar-link"><i class="fas fa-upload"></i> Upload</a>
                 <a href="LIBRARY.HTML" class="sidebar-link active"><i class="fas fa-book"></i> Library</a>
                 <a href="feedback.html" class="sidebar-link"><i class="fas fa-comment-dots"></i> Feedback</a>
             </div>
@@ -347,9 +393,257 @@
         <div class="main-content">
             <h1>Library</h1>
             <p>Browse all uploaded materials alphabetically.</p>
-
+            <div class="library-section">
+                <h2>Available Resources</h2>
+                <div id="staticLibraryList" class="library-list">
+                    <div class="library-item">
+                        <div class="file-info">
+                            <a href="GES 103 (1).pdf" download="GES 103.pdf">
+                                <i class="fas fa-file-pdf"></i> GES 103
+                            </a>
+                            <span>PDF • General Studies</span>
+                        </div>
+                        <a href="GES 103 (1).pdf" download="GES 103.pdf" class="download-btn">
+                            <i class="fas fa-download"></i>
+                        </a>
+                    </div>
+                    <div class="library-item">
+                        <div class="file-info">
+                            <a href="GES-103-NIGERIAN-PEOPLE-AND-CULTURE.pdf" download="GES-103-NIGERIAN-PEOPLE-AND-CULTURE.pdf">
+                                <i class="fas fa-file-pdf"></i> GES 103: Nigerian People and Culture
+                            </a>
+                            <span>PDF • Cultural Studies</span>
+                        </div>
+                        <a href="GES-103-NIGERIAN-PEOPLE-AND-CULTURE.pdf" download="GES-103-NIGERIAN-PEOPLE-AND-CULTURE.pdf" class="download-btn">
+                            <i class="fas fa-download"></i>
+                        </a>
+                    </div>
+                    <div class="library-item">
+                        <div class="file-info">
+                            <a href="Ges 211 workbook answers 1.pdf" download="Ges 211 workbook answers.pdf">
+                                <i class="fas fa-file-pdf"></i> GES 211 Workbook Answers
+                            </a>
+                            <span>PDF • Workbook</span>
+                        </div>
+                        <a href="Ges 211 workbook answers 1.pdf" download="Ges 211 workbook answers.pdf" class="download-btn">
+                            <i class="fas fa-download"></i>
+                        </a>
+                    </div>
+                    <div class="library-item">
+                        <div class="file-info">
+                            <a href="ges-100-summary-1-1-summary-notes-on-english.pdf" download="GES 100 Summary.pdf">
+                                <i class="fas fa-file-pdf"></i> GES 100 Summary Notes
+                            </a>
+                            <span>PDF • English Studies</span>
+                        </div>
+                        <a href="ges-100-summary-1-1-summary-notes-on-english.pdf" download="GES 100 Summary.pdf" class="download-btn">
+                            <i class="fas fa-download"></i>
+                        </a>
+                    </div>
+                    <div class="library-item">
+                        <div class="file-info">
+                            <a href="SURE 'A' GES QUESTION BANK-2-1.pdf" download="GES Past Question.pdf">
+                                <i class="fas fa-file-pdf"></i> GES Past Question Bank
+                            </a>
+                            <span>PDF • Exam Prep</span>
+                        </div>
+                        <a href="SURE 'A' GES QUESTION BANK-2-1.pdf" download="GES Past Question.pdf" class="download-btn">
+                            <i class="fas fa-download"></i>
+                        </a>
+                    </div>
+                    <div class="library-item">
+                        <div class="file-info">
+                            <a href="IFT 203.1 - Lecture Note.pdf" download="IFT 203.1.pdf">
+                                <i class="fas fa-file-pdf"></i> IFT 203.1 Lecture Note
+                            </a>
+                            <span>PDF • Information Technology</span>
+                        </div>
+                        <a href="IFT 203.1 - Lecture Note.pdf" download="IFT 203.1.pdf" class="download-btn">
+                            <i class="fas fa-download"></i>
+                        </a>
+                    </div>
+                    <div class="library-item">
+                        <div class="file-info">
+                            <a href="IFT 205.1 -  INTRODUCTION TO INFORMATION TECHNOLOGY.pdf" download="IFT 205.1.pdf">
+                                <i class="fas fa-file-pdf"></i> IFT 205.1: Introduction to IT
+                            </a>
+                            <span>PDF • Information Technology</span>
+                        </div>
+                        <a href="IFT 205.1 -  INTRODUCTION TO INFORMATION TECHNOLOGY.pdf" download="IFT 205.1.pdf" class="download-btn">
+                            <i class="fas fa-download"></i>
+                        </a>
+                    </div>
+                    <div class="library-item">
+                        <div class="file-info">
+                            <a href="IMPULSE & MOMENTUM SIMPLIFIED SHEET.pdf" download="Impulse and Momentum.pdf">
+                                <i class="fas fa-file-pdf"></i> Impulse and Momentum Simplified
+                            </a>
+                            <span>PDF • Physics</span>
+                        </div>
+                        <a href="IMPULSE & MOMENTUM SIMPLIFIED SHEET.pdf" download="Impulse and Momentum.pdf" class="download-btn">
+                            <i class="fas fa-download"></i>
+                        </a>
+                    </div>
+                    <div class="library-item">
+                        <div class="file-info">
+                            <a href="INTRO TO WEB TECHNOLOGIES.pdf" download="Intro to Web Technologies.pdf">
+                                <i class="fas fa-file-pdf"></i> Introduction to Web Technologies
+                            </a>
+                            <span>PDF • Web Development</span>
+                        </div>
+                        <a href="INTRO TO WEB TECHNOLOGIES.pdf" download="Intro to Web Technologies.pdf" class="download-btn">
+                            <i class="fas fa-download"></i>
+                        </a>
+                    </div>
+                    <div class="library-item">
+                        <div class="file-info">
+                            <a href="INTRODUCTIO TO WEB TECHNOLOGIES 02 OT.pdf" download="Intro to Web Technologies 2.pdf">
+                                <i class="fas fa-file-pdf"></i> Introduction to Web Technologies 2
+                            </a>
+                            <span>PDF • Web Development</span>
+                        </div>
+                        <a href="INTRODUCTIO TO WEB TECHNOLOGIES 02 OT.pdf" download="Intro to Web Technologies 2.pdf" class="download-btn">
+                            <i class="fas fa-download"></i>
+                        </a>
+                    </div>
+                    <div class="library-item">
+                        <div class="file-info">
+                            <a href="Lecture Notes - INS 202 r2 Students Copy.pdf" download="INS 202.pdf">
+                                <i class="fas fa-file-pdf"></i> INS 202 Lecture Notes
+                            </a>
+                            <span>PDF • General Studies</span>
+                        </div>
+                        <a href="Lecture Notes - INS 202 r2 Students Copy.pdf" download="INS 202.pdf" class="download-btn">
+                            <i class="fas fa-download"></i>
+                        </a>
+                    </div>
+                    <div class="library-item">
+                        <div class="file-info">
+                            <a href="Lecture Note for IFT 234 - E-Commerce Applications and Digital Economy - student copy.pdf" download="IFT 234.pdf">
+                                <i class="fas fa-file-pdf"></i> IFT 234: E-Commerce and Digital Economy
+                            </a>
+                            <span>PDF • E-Commerce</span>
+                        </div>
+                        <a href="Lecture Note for IFT 234 - E-Commerce Applications and Digital Economy - student copy.pdf" download="IFT 234.pdf" class="download-btn">
+                            <i class="fas fa-download"></i>
+                        </a>
+                    </div>
+                    <div class="library-item">
+                        <div class="file-info">
+                            <a href="MATH 110 CURRENT PAST Q.pdf" download="MTH 110 Past Questions.pdf">
+                                <i class="fas fa-file-pdf"></i> MTH 110 Past Questions
+                            </a>
+                            <span>PDF • Mathematics</span>
+                        </div>
+                        <a href="MATH 110 CURRENT PAST Q.pdf" download="MTH 110 Past Questions.pdf" class="download-btn">
+                            <i class="fas fa-download"></i>
+                        </a>
+                    </div>
+                    <div class="library-item">
+                        <div class="file-info">
+                            <a href="MATH 120 PAST QUESTIONS.pdf" download="MTH 120 Past Questions.pdf">
+                                <i class="fas fa-file-pdf"></i> MTH 120 Past Questions
+                            </a>
+                            <span>PDF • Mathematics</span>
+                        </div>
+                        <a href="MATH 120 PAST QUESTIONS.pdf" download="MTH 120 Past Questions.pdf" class="download-btn">
+                            <i class="fas fa-download"></i>
+                        </a>
+                    </div>
+                    <div class="library-item">
+                        <div class="file-info">
+                            <a href="Math120-fullBook.pdf" download="MTH 120 Full Book.pdf">
+                                <i class="fas fa-file-pdf"></i> MTH 120 Full Book
+                            </a>
+                            <span>PDF • Mathematics</span>
+                        </div>
+                        <a href="Math120-fullBook.pdf" download="MTH 120 Full Book.pdf" class="download-btn">
+                            <i class="fas fa-download"></i>
+                        </a>
+                    </div>
+                    <div class="library-item">
+                        <div class="file-info">
+                            <a href="MATHS 110 MATERIAL GUIDE.pdf" download="MTH 110 Material Guide.pdf">
+                                <i class="fas fa-file-pdf"></i> MTH 110 Material Guide
+                            </a>
+                            <span>PDF • Mathematics</span>
+                        </div>
+                        <a href="MATHS 110 MATERIAL GUIDE.pdf" download="MTH 110 Material Guide.pdf" class="download-btn">
+                            <i class="fas fa-download"></i>
+                        </a>
+                    </div>
+                    <div class="library-item">
+                        <div class="file-info">
+                            <a href="MOTION EASY PRACTICE QUESTIONS .pdf" download="Motion Practice Questions.pdf">
+                                <i class="fas fa-file-pdf"></i> Motion Practice Questions
+                            </a>
+                            <span>PDF • Physics</span>
+                        </div>
+                        <a href="MOTION EASY PRACTICE QUESTIONS .pdf" download="Motion Practice Questions.pdf" class="download-btn">
+                            <i class="fas fa-download"></i>
+                        </a>
+                    </div>
+                    <div class="library-item">
+                        <div class="file-info">
+                            <a href="MTH-120.pdf" download="MTH 120.pdf">
+                                <i class="fas fa-file-pdf"></i> MTH 120
+                            </a>
+                            <span>PDF • Mathematics</span>
+                        </div>
+                        <a href="MTH-120.pdf" download="MTH 120.pdf" class="download-btn">
+                            <i class="fas fa-download"></i>
+                        </a>
+                    </div>
+                    <div class="library-item">
+                        <div class="file-info">
+                            <a href="PHY 101 CURRENT PAST QUESTIONS .pdf" download="PHY 101 Past Questions.pdf">
+                                <i class="fas fa-file-pdf"></i> PHY 101 Past Questions
+                            </a>
+                            <span>PDF • Physics</span>
+                        </div>
+                        <a href="PHY 101 CURRENT PAST QUESTIONS .pdf" download="PHY 101 Past Questions.pdf" class="download-btn">
+                            <i class="fas fa-download"></i>
+                        </a>
+                    </div>
+                    <div class="library-item">
+                        <div class="file-info">
+                            <a href="PHY 103 MOST LIKELY DEFENSE QUESTIONS BY ROWLAND.pdf" download="PHY 103 Past Questions.pdf">
+                                <i class="fas fa-file-pdf"></i> PHY 103 Past Questions
+                            </a>
+                            <span>PDF • Physics</span>
+                        </div>
+                        <a href="PHY 103 MOST LIKELY DEFENSE QUESTIONS BY ROWLAND.pdf" download="PHY 103 Past Questions.pdf" class="download-btn">
+                            <i class="fas fa-download"></i>
+                        </a>
+                    </div>
+                    <div class="library-item">
+                        <div class="file-info">
+                            <a href="PHY191.pdf" download="PHY191.pdf">
+                                <i class="fas fa-file-pdf"></i> PHY 191
+                            </a>
+                            <span>PDF • Physics</span>
+                        </div>
+                        <a href="PHY191.pdf" download="PHY191.pdf" class="download-btn">
+                            <i class="fas fa-download"></i>
+                        </a>
+                    </div>
+                    <div class="library-item">
+                        <div class="file-info">
+                            <a href="PHYSICS 101 (chapter 5&6).pdf" download="PHY 101 Chapters 5-6.pdf">
+                                <i class="fas fa-file-pdf"></i> PHY 101: Chapters 5 & 6
+                            </a>
+                            <span>PDF • Physics</span>
+                        </div>
+                        <a href="PHYSICS 101 (chapter 5&6).pdf" download="PHY 101 Chapters 5-6.pdf" class="download-btn">
+                            <i class="fas fa-download"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
             <div id="libraryList" class="library-section">
-                 </div>
+                <h2>Uploaded Files</h2>
+            </div>
+        </div>
         </div>
     </div>
 <script>
